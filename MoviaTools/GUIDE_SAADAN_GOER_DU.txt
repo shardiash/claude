@@ -1,0 +1,81 @@
+=====================================================
+  MOVIA-SKAERME TIL THE BUS - SAADAN GOER DU
+=====================================================
+
+Alle filer ligger i:  Documents\The Bus\MoviaTools
+
+
+-----------------------------------------------------
+ 1. LAV DIT DESIGN
+-----------------------------------------------------
+ Vaelg EN af disse:
+
+ A) Selv i editoren
+    - Dobbeltklik paa  start_editor.bat
+    - Vaelg skaerm oeverst, traek rundt, ret tekster og farver
+    - Tryk  "Gem som kommando.json"
+
+ B) Med Gemini (eller en anden AI)
+    - Aabn  AI_GUIDE.md  i Notesblok, kopier det hele
+    - Saet det ind hos Gemini + skriv hvad du vil have
+    - Gem svaret som  kommando.json  i MoviaTools-mappen
+      (filen skal ende paa .json - ikke .txt)
+    - Se det foerst: start editoren - den viser kommando.json
+
+ HUSK: Er editoren aaben, naar du faar en ny kommando.json,
+ saa tryk "Aabn kommando.json" FOER du trykker Gem.
+ Ellers overskriver du den nye fil med den gamle.
+
+
+-----------------------------------------------------
+ 2. AABN THE BUS MODDING OG FAA MOVIA-MENUEN
+-----------------------------------------------------
+ - Start The Bus Modding (fra Epic Games)
+ - Tjek i titellinjen at det er den rigtige mod,
+   fx "The Bus Modding - MoviaSkaerme"
+ - Tools > Execute Python Script > vaelg  movia_menu.py
+ - Nu er der en ny menu i toppen der hedder  "Movia"
+   (det skal goeres hver gang editoren er startet)
+
+
+-----------------------------------------------------
+ 3. VIL DU HAVE EN NY MOD? (ellers spring over)
+-----------------------------------------------------
+ - Movia > Ny mod ...  (viser vejledningen)
+ - Kort: TML > Mod Creator > Create new Mod > Empty > skriv navn > Create
+ - Editoren genstarter i din nye mod - goer trin 2 igen
+ - Skrifttyper og billeder kopieres automatisk ind
+
+
+-----------------------------------------------------
+ 4. BYG SKAERMEN
+-----------------------------------------------------
+ - Movia > Koer kommando.json
+ - Aabn  Output Log  nederst og kig efter linjer med [MOVIA
+ - Der skal staa  FAERDIG  til sidst
+ - Roede fejl? Tag et skaermbillede og send det til Claude
+
+
+-----------------------------------------------------
+ 5. GEM TIL SPILLET (byg modden)
+-----------------------------------------------------
+ - LUK The Bus, hvis spillet koerer
+ - TML > Mod Creator > Build Mod > Build Client Only
+ - Vent til der IKKE laengere staar "Cooking" nederst til hoejre
+   (foerste gang kan tage 10-30 min, derefter faa minutter)
+ - Modden ligger nu i  Documents\The Bus\Mods\<modnavn>
+
+
+-----------------------------------------------------
+ 6. TEST I SPILLET
+-----------------------------------------------------
+ - Start The Bus
+ - Slaa modden til i spillets mod-menu (kun EN Movia-mod ad gangen)
+ - Hop ind i en bus med "Scania Citywide Interior Display"
+
+
+-----------------------------------------------------
+ HURTIG OVERSIGT
+-----------------------------------------------------
+ Design  ->  kommando.json  ->  Movia > Koer kommando.json
+         ->  Build Mod  ->  start spillet

@@ -1,0 +1,36 @@
+MOVIA TOOLS - aendr skaermene med simple funktioner
+====================================================
+
+SAADAN GOER DU
+1. Aabn The Bus Modding.
+2. Aabn  movia_aendringer.py  i Notesblok og skriv dine aendringer.
+3. I editoren: Tools > Execute Python Script > vaelg  movia_aendringer.py
+4. Se resultatet i Output Log (linjer der starter med [MOVIA]).
+5. Tryk TML > Mod Creator > Build Mod.
+
+FUNKTIONER
+  vis_elementer("Passager")                       viser alle elementnavne i en skaerm
+  tekst("Passager", "ElementNavn", "Ny tekst")    aendrer tekst
+  tekstfarve("Passager", "ElementNavn", "#333333")
+  skrift("Passager", "ElementNavn", "Bold", 40)   Regular/Medium/SemiBold/Bold/ExtraBold
+  farve("Main", "ElementNavn", "#E2231A")         farve paa billede eller boks
+  billede("Passager", "Image_Reklame", "/Game/MoviaSkaerme/T_Reklame_Aeblefest")
+  skjul("Main", "ElementNavn")   /   vis("Main", "ElementNavn")
+  gennemsigtighed("Main", "ElementNavn", 0.5)
+  gem_alt()                                       SKAL staa sidst
+
+SKAERM-NAVNE
+  Passager, StopRaekke, Main, Driving, Startup
+  (flere kan tilfoejes i SKAERME oeverst i movia_tools.py)
+
+ELEMENTNAVNE
+  Det er navnet som det staar i Hierarchy i editoren, fx "Text_NextBusStop".
+  Koer vis_elementer(...) for at faa listen.
+
+FARVER
+  Hex-koder som i designet: #E2231A (Movia-roed), #111111 (sort),
+  #F3F4F5 (lysegraa), #3FA535 (groen), #DE3B26 (roed).
+
+NYE BILLEDER
+  Laeg billedet i Documents\The Bus\MoviaImport, importer det i editoren
+  (mappen MoviaSkaerme), og brug billede(...) med stien /Game/MoviaSkaerme/Navn.

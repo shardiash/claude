@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+MoviaTools/login_email.txt
+MoviaTools/program_*.txt
+MoviaTools/_u*
+MoviaTools/_probe*
+MoviaTools/_ud*

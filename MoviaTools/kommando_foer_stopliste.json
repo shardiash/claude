@@ -1,0 +1,4555 @@
+[
+  {
+    "skaerm": "Passager",
+    "layout": {
+      "w": 1600,
+      "h": 430,
+      "bg": "#FFFFFF",
+      "items": [
+        {
+          "type": "box",
+          "name": "Reklame",
+          "x": 0,
+          "y": 0,
+          "w": 790,
+          "h": 430,
+          "color": "#FFFFFF",
+          "image": "T_Reklame_Aeblefest"
+        },
+        {
+          "type": "box",
+          "name": "Højre baggrund",
+          "x": 790,
+          "y": 0,
+          "w": 810,
+          "h": 430,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "box",
+          "name": "Topfelt",
+          "x": 790,
+          "y": 0,
+          "w": 810,
+          "h": 92,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "box",
+          "name": "Streg under top",
+          "x": 790,
+          "y": 92,
+          "w": 810,
+          "h": 2,
+          "color": "#DCDFE2"
+        },
+        {
+          "type": "text",
+          "name": "Næste stop label",
+          "x": 822,
+          "y": 20,
+          "text": "Næste stop",
+          "size": 22,
+          "color": "#333333",
+          "bold": true
+        },
+        {
+          "type": "text",
+          "name": "Next stop label",
+          "x": 822,
+          "y": 48,
+          "text": "Next stop",
+          "size": 18,
+          "color": "#8A8F94"
+        },
+        {
+          "type": "text",
+          "name": "Næste stop",
+          "x": 980,
+          "y": 16,
+          "data": "NaesteStop",
+          "size": 33,
+          "color": "#1D1D1D",
+          "bold": true
+        },
+        {
+          "type": "box",
+          "name": "Venstre kolonne",
+          "x": 790,
+          "y": 94,
+          "w": 190,
+          "h": 336,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "box",
+          "name": "Streg venstre kolonne",
+          "x": 980,
+          "y": 94,
+          "w": 2,
+          "h": 336,
+          "color": "#DCDFE2"
+        },
+        {
+          "type": "box",
+          "name": "Stop it boks",
+          "x": 790,
+          "y": 94,
+          "w": 190,
+          "h": 160,
+          "color": "#1B2A6B"
+        },
+        {
+          "type": "text",
+          "name": "Stop it tekst",
+          "x": 838,
+          "y": 154,
+          "text": "",
+          "size": 30,
+          "color": "#FFFFFF",
+          "bold": true,
+          "hidden": true
+        },
+        {
+          "type": "box",
+          "name": "STOP-felt",
+          "x": 790,
+          "y": 94,
+          "w": 190,
+          "h": 160,
+          "color": "#1B2A6B00",
+          "color_on": "#E2231A",
+          "state": "StopOenske"
+        },
+        {
+          "type": "box",
+          "name": "Streg under STOP",
+          "x": 790,
+          "y": 254,
+          "w": 190,
+          "h": 2,
+          "color": "#DCDFE2"
+        },
+        {
+          "type": "text",
+          "name": "Linje-label",
+          "x": 822,
+          "y": 282,
+          "text": "Linje:",
+          "size": 24,
+          "color": "#1D1D1D",
+          "bold": true
+        },
+        {
+          "type": "text",
+          "name": "Linje",
+          "x": 900,
+          "y": 282,
+          "data": "Linje",
+          "size": 24,
+          "color": "#8A8F94"
+        },
+        {
+          "type": "text",
+          "name": "Zone",
+          "x": 822,
+          "y": 328,
+          "text": "Zone: 2",
+          "size": 24,
+          "color": "#1D1D1D",
+          "bold": true
+        },
+        {
+          "type": "text",
+          "name": "Ur",
+          "x": 822,
+          "y": 374,
+          "data": "Ur",
+          "size": 24,
+          "color": "#1D1D1D",
+          "bold": true
+        },
+        {
+          "type": "box",
+          "name": "Stopliste",
+          "x": 1096,
+          "y": 110,
+          "w": 484,
+          "h": 300,
+          "color": "#FFFFFF",
+          "data": "StopListe"
+        },
+        {
+          "type": "box",
+          "name": "Tidslinje",
+          "x": 1110,
+          "y": 118,
+          "w": 5,
+          "h": 278,
+          "color": "#9AA0A6"
+        },
+        {
+          "type": "text",
+          "name": "Pil",
+          "x": 1098,
+          "y": 384,
+          "text": "▼",
+          "size": 28,
+          "color": "#9AA0A6"
+        },
+        {
+          "type": "text",
+          "name": "Minutter 1",
+          "x": 1008,
+          "y": 110,
+          "text": "2 min",
+          "size": 20,
+          "color": "#6B7075",
+          "bold": false
+        },
+        {
+          "type": "text",
+          "name": "Minutter 2",
+          "x": 1008,
+          "y": 201,
+          "text": "4 min",
+          "size": 20,
+          "color": "#6B7075",
+          "bold": false
+        },
+        {
+          "type": "text",
+          "name": "Minutter 3",
+          "x": 1008,
+          "y": 292,
+          "text": "6 min",
+          "size": 20,
+          "color": "#6B7075",
+          "bold": false
+        },
+        {
+          "type": "box",
+          "name": "Reklame 2",
+          "x": 0,
+          "y": 0,
+          "w": 790,
+          "h": 430,
+          "color": "#FFFFFF",
+          "image": "T_Reklame_Boennebaren",
+          "z": 1
+        },
+        {
+          "type": "box",
+          "name": "Maerke1_1",
+          "x": 1140,
+          "y": 144,
+          "w": 40,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 40,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "MaerkeTxt1_1",
+          "x": 1140,
+          "y": 145,
+          "w": 40,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 41,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Maerke1_2",
+          "x": 1186,
+          "y": 144,
+          "w": 40,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 40,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "MaerkeTxt1_2",
+          "x": 1186,
+          "y": 145,
+          "w": 40,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 41,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Maerke1_3",
+          "x": 1232,
+          "y": 144,
+          "w": 40,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 40,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "MaerkeTxt1_3",
+          "x": 1232,
+          "y": 145,
+          "w": 40,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 41,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Maerke1_4",
+          "x": 1278,
+          "y": 144,
+          "w": 40,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 40,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "MaerkeTxt1_4",
+          "x": 1278,
+          "y": 145,
+          "w": 40,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 41,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Maerke1_5",
+          "x": 1324,
+          "y": 144,
+          "w": 40,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 40,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "MaerkeTxt1_5",
+          "x": 1324,
+          "y": 145,
+          "w": 40,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 41,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Maerke2_1",
+          "x": 1140,
+          "y": 235,
+          "w": 40,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 40,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "MaerkeTxt2_1",
+          "x": 1140,
+          "y": 236,
+          "w": 40,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 41,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Maerke2_2",
+          "x": 1186,
+          "y": 235,
+          "w": 40,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 40,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "MaerkeTxt2_2",
+          "x": 1186,
+          "y": 236,
+          "w": 40,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 41,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Maerke2_3",
+          "x": 1232,
+          "y": 235,
+          "w": 40,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 40,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "MaerkeTxt2_3",
+          "x": 1232,
+          "y": 236,
+          "w": 40,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 41,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Maerke2_4",
+          "x": 1278,
+          "y": 235,
+          "w": 40,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 40,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "MaerkeTxt2_4",
+          "x": 1278,
+          "y": 236,
+          "w": 40,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 41,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Maerke2_5",
+          "x": 1324,
+          "y": 235,
+          "w": 40,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 40,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "MaerkeTxt2_5",
+          "x": 1324,
+          "y": 236,
+          "w": 40,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 41,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Maerke3_1",
+          "x": 1140,
+          "y": 326,
+          "w": 40,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 40,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "MaerkeTxt3_1",
+          "x": 1140,
+          "y": 327,
+          "w": 40,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 41,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Maerke3_2",
+          "x": 1186,
+          "y": 326,
+          "w": 40,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 40,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "MaerkeTxt3_2",
+          "x": 1186,
+          "y": 327,
+          "w": 40,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 41,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Maerke3_3",
+          "x": 1232,
+          "y": 326,
+          "w": 40,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 40,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "MaerkeTxt3_3",
+          "x": 1232,
+          "y": 327,
+          "w": 40,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 41,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Maerke3_4",
+          "x": 1278,
+          "y": 326,
+          "w": 40,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 40,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "MaerkeTxt3_4",
+          "x": 1278,
+          "y": 327,
+          "w": 40,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 41,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Maerke3_5",
+          "x": 1324,
+          "y": 326,
+          "w": 40,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 40,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "MaerkeTxt3_5",
+          "x": 1324,
+          "y": 327,
+          "w": 40,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 41,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Tavle bund",
+          "x": 982,
+          "y": 94,
+          "w": 618,
+          "h": 336,
+          "color": "#FFFFFF",
+          "z": 210,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Tavle bus ikon",
+          "x": 1000,
+          "y": 106,
+          "w": 22,
+          "h": 22,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\bus_ikon.png",
+          "z": 211,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle Bus",
+          "x": 1030,
+          "y": 105,
+          "text": "Bus",
+          "size": 17,
+          "color": "#1D1D1D",
+          "z": 211,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle kol Linje",
+          "x": 1000,
+          "y": 134,
+          "text": "Linje",
+          "size": 10,
+          "color": "#8A8F94",
+          "z": 211,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle kol Line",
+          "x": 1000,
+          "y": 146,
+          "text": "Line",
+          "size": 10,
+          "color": "#8A8F94",
+          "z": 211,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle kol Til",
+          "x": 1046,
+          "y": 134,
+          "text": "Til",
+          "size": 10,
+          "color": "#8A8F94",
+          "z": 211,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle kol To",
+          "x": 1046,
+          "y": 146,
+          "text": "To",
+          "size": 10,
+          "color": "#8A8F94",
+          "z": 211,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle kol Om min",
+          "x": 1490,
+          "y": 134,
+          "text": "Om min.",
+          "size": 10,
+          "color": "#8A8F94",
+          "z": 211,
+          "align": "hoejre",
+          "w": 90,
+          "h": 14,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle kol In min",
+          "x": 1490,
+          "y": 146,
+          "text": "In min.",
+          "size": 10,
+          "color": "#8A8F94",
+          "z": 211,
+          "align": "hoejre",
+          "w": 90,
+          "h": 14,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Tavle streg",
+          "x": 1000,
+          "y": 161,
+          "w": 580,
+          "h": 1,
+          "color": "#DCDFE2",
+          "z": 211,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Tavle rk1 bund",
+          "x": 1000,
+          "y": 164,
+          "w": 580,
+          "h": 32,
+          "color": "#F2F3F5",
+          "z": 211,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Tavle rk1 maerke",
+          "x": 1004,
+          "y": 171,
+          "w": 32,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 212,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk1 linje",
+          "x": 1004,
+          "y": 172,
+          "w": 32,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk1 til",
+          "x": 1046,
+          "y": 170,
+          "w": 420,
+          "h": 22,
+          "text": "",
+          "size": 14,
+          "color": "#1D1D1D",
+          "klip": true,
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk1 min",
+          "x": 1490,
+          "y": 170,
+          "w": 90,
+          "h": 22,
+          "text": "",
+          "size": 14,
+          "color": "#1D1D1D",
+          "align": "hoejre",
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Tavle rk2 maerke",
+          "x": 1004,
+          "y": 205,
+          "w": 32,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 212,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk2 linje",
+          "x": 1004,
+          "y": 206,
+          "w": 32,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk2 til",
+          "x": 1046,
+          "y": 204,
+          "w": 420,
+          "h": 22,
+          "text": "",
+          "size": 14,
+          "color": "#1D1D1D",
+          "klip": true,
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk2 min",
+          "x": 1490,
+          "y": 204,
+          "w": 90,
+          "h": 22,
+          "text": "",
+          "size": 14,
+          "color": "#1D1D1D",
+          "align": "hoejre",
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Tavle rk3 bund",
+          "x": 1000,
+          "y": 232,
+          "w": 580,
+          "h": 32,
+          "color": "#F2F3F5",
+          "z": 211,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Tavle rk3 maerke",
+          "x": 1004,
+          "y": 239,
+          "w": 32,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 212,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk3 linje",
+          "x": 1004,
+          "y": 240,
+          "w": 32,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk3 til",
+          "x": 1046,
+          "y": 238,
+          "w": 420,
+          "h": 22,
+          "text": "",
+          "size": 14,
+          "color": "#1D1D1D",
+          "klip": true,
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk3 min",
+          "x": 1490,
+          "y": 238,
+          "w": 90,
+          "h": 22,
+          "text": "",
+          "size": 14,
+          "color": "#1D1D1D",
+          "align": "hoejre",
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Tavle rk4 maerke",
+          "x": 1004,
+          "y": 273,
+          "w": 32,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 212,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk4 linje",
+          "x": 1004,
+          "y": 274,
+          "w": 32,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk4 til",
+          "x": 1046,
+          "y": 272,
+          "w": 420,
+          "h": 22,
+          "text": "",
+          "size": 14,
+          "color": "#1D1D1D",
+          "klip": true,
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk4 min",
+          "x": 1490,
+          "y": 272,
+          "w": 90,
+          "h": 22,
+          "text": "",
+          "size": 14,
+          "color": "#1D1D1D",
+          "align": "hoejre",
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Tavle rk5 bund",
+          "x": 1000,
+          "y": 300,
+          "w": 580,
+          "h": 32,
+          "color": "#F2F3F5",
+          "z": 211,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Tavle rk5 maerke",
+          "x": 1004,
+          "y": 307,
+          "w": 32,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 212,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk5 linje",
+          "x": 1004,
+          "y": 308,
+          "w": 32,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk5 til",
+          "x": 1046,
+          "y": 306,
+          "w": 420,
+          "h": 22,
+          "text": "",
+          "size": 14,
+          "color": "#1D1D1D",
+          "klip": true,
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk5 min",
+          "x": 1490,
+          "y": 306,
+          "w": 90,
+          "h": 22,
+          "text": "",
+          "size": 14,
+          "color": "#1D1D1D",
+          "align": "hoejre",
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Tavle rk6 maerke",
+          "x": 1004,
+          "y": 341,
+          "w": 32,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 212,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk6 linje",
+          "x": 1004,
+          "y": 342,
+          "w": 32,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk6 til",
+          "x": 1046,
+          "y": 340,
+          "w": 420,
+          "h": 22,
+          "text": "",
+          "size": 14,
+          "color": "#1D1D1D",
+          "klip": true,
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk6 min",
+          "x": 1490,
+          "y": 340,
+          "w": 90,
+          "h": 22,
+          "text": "",
+          "size": 14,
+          "color": "#1D1D1D",
+          "align": "hoejre",
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Tavle rk7 bund",
+          "x": 1000,
+          "y": 368,
+          "w": 580,
+          "h": 32,
+          "color": "#F2F3F5",
+          "z": 211,
+          "_ny": true
+        },
+        {
+          "type": "box",
+          "name": "Tavle rk7 maerke",
+          "x": 1004,
+          "y": 375,
+          "w": 32,
+          "h": 18,
+          "color": "#F5B800",
+          "z": 212,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk7 linje",
+          "x": 1004,
+          "y": 376,
+          "w": 32,
+          "h": 16,
+          "text": "",
+          "size": 10,
+          "bold": true,
+          "color": "#1D1D1D",
+          "align": "midt",
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk7 til",
+          "x": 1046,
+          "y": 374,
+          "w": 420,
+          "h": 22,
+          "text": "",
+          "size": 14,
+          "color": "#1D1D1D",
+          "klip": true,
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Tavle rk7 min",
+          "x": 1490,
+          "y": 374,
+          "w": 90,
+          "h": 22,
+          "text": "",
+          "size": 14,
+          "color": "#1D1D1D",
+          "align": "hoejre",
+          "z": 213,
+          "_ny": true
+        },
+        {
+          "type": "text",
+          "name": "Debug afstand",
+          "x": 1380,
+          "y": 412,
+          "text": "",
+          "size": 9,
+          "color": "#8A8F94",
+          "z": 400,
+          "_ny": true
+        }
+      ],
+      "regler": [
+        {
+          "saet": "tekst",
+          "element": "Minutter 1",
+          "til": "{Forventet1:heltal} min"
+        },
+        {
+          "saet": "tekst",
+          "element": "Minutter 2",
+          "til": "{Forventet2:heltal} min"
+        },
+        {
+          "saet": "tekst",
+          "element": "Minutter 3",
+          "til": "{Forventet3:heltal} min"
+        },
+        {
+          "hvis": "Afstand < 150 eller Forventet1 < 0.5",
+          "saet": "tekst",
+          "element": "Minutter 1",
+          "til": "Nu"
+        },
+        {
+          "hvis": "Linje1_1 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "Maerke1_1",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_1 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "MaerkeTxt1_1",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_1 indeholder 'S'",
+          "saet": "farve",
+          "element": "Maerke1_1",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_1 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "MaerkeTxt1_1",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "MaerkeTxt1_1",
+          "til": "{Linje1_1}",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_2 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "Maerke1_2",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_2 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "MaerkeTxt1_2",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_2 indeholder 'S'",
+          "saet": "farve",
+          "element": "Maerke1_2",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_2 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "MaerkeTxt1_2",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "MaerkeTxt1_2",
+          "til": "{Linje1_2}",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_3 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "Maerke1_3",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_3 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "MaerkeTxt1_3",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_3 indeholder 'S'",
+          "saet": "farve",
+          "element": "Maerke1_3",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_3 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "MaerkeTxt1_3",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "MaerkeTxt1_3",
+          "til": "{Linje1_3}",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_4 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "Maerke1_4",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_4 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "MaerkeTxt1_4",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_4 indeholder 'S'",
+          "saet": "farve",
+          "element": "Maerke1_4",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_4 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "MaerkeTxt1_4",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "MaerkeTxt1_4",
+          "til": "{Linje1_4}",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_5 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "Maerke1_5",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_5 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "MaerkeTxt1_5",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_5 indeholder 'S'",
+          "saet": "farve",
+          "element": "Maerke1_5",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje1_5 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "MaerkeTxt1_5",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "MaerkeTxt1_5",
+          "til": "{Linje1_5}",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_1 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "Maerke2_1",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_1 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "MaerkeTxt2_1",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_1 indeholder 'S'",
+          "saet": "farve",
+          "element": "Maerke2_1",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_1 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "MaerkeTxt2_1",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "MaerkeTxt2_1",
+          "til": "{Linje2_1}",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_2 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "Maerke2_2",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_2 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "MaerkeTxt2_2",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_2 indeholder 'S'",
+          "saet": "farve",
+          "element": "Maerke2_2",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_2 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "MaerkeTxt2_2",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "MaerkeTxt2_2",
+          "til": "{Linje2_2}",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_3 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "Maerke2_3",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_3 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "MaerkeTxt2_3",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_3 indeholder 'S'",
+          "saet": "farve",
+          "element": "Maerke2_3",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_3 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "MaerkeTxt2_3",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "MaerkeTxt2_3",
+          "til": "{Linje2_3}",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_4 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "Maerke2_4",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_4 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "MaerkeTxt2_4",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_4 indeholder 'S'",
+          "saet": "farve",
+          "element": "Maerke2_4",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_4 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "MaerkeTxt2_4",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "MaerkeTxt2_4",
+          "til": "{Linje2_4}",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_5 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "Maerke2_5",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_5 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "MaerkeTxt2_5",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_5 indeholder 'S'",
+          "saet": "farve",
+          "element": "Maerke2_5",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje2_5 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "MaerkeTxt2_5",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "MaerkeTxt2_5",
+          "til": "{Linje2_5}",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_1 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "Maerke3_1",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_1 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "MaerkeTxt3_1",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_1 indeholder 'S'",
+          "saet": "farve",
+          "element": "Maerke3_1",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_1 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "MaerkeTxt3_1",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "MaerkeTxt3_1",
+          "til": "{Linje3_1}",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_2 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "Maerke3_2",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_2 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "MaerkeTxt3_2",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_2 indeholder 'S'",
+          "saet": "farve",
+          "element": "Maerke3_2",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_2 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "MaerkeTxt3_2",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "MaerkeTxt3_2",
+          "til": "{Linje3_2}",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_3 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "Maerke3_3",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_3 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "MaerkeTxt3_3",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_3 indeholder 'S'",
+          "saet": "farve",
+          "element": "Maerke3_3",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_3 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "MaerkeTxt3_3",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "MaerkeTxt3_3",
+          "til": "{Linje3_3}",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_4 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "Maerke3_4",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_4 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "MaerkeTxt3_4",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_4 indeholder 'S'",
+          "saet": "farve",
+          "element": "Maerke3_4",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_4 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "MaerkeTxt3_4",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "MaerkeTxt3_4",
+          "til": "{Linje3_4}",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_5 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "Maerke3_5",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_5 != '' og VedStop = 0",
+          "saet": "vis",
+          "element": "MaerkeTxt3_5",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_5 indeholder 'S'",
+          "saet": "farve",
+          "element": "Maerke3_5",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "Linje3_5 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "MaerkeTxt3_5",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "MaerkeTxt3_5",
+          "til": "{Linje3_5}",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1",
+          "saet": "vis",
+          "element": "Tavle bund",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1",
+          "saet": "vis",
+          "element": "Tavle bus ikon",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1",
+          "saet": "vis",
+          "element": "Tavle Bus",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1",
+          "saet": "vis",
+          "element": "Tavle kol Linje",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1",
+          "saet": "vis",
+          "element": "Tavle kol Line",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1",
+          "saet": "vis",
+          "element": "Tavle kol Til",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1",
+          "saet": "vis",
+          "element": "Tavle kol To",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1",
+          "saet": "vis",
+          "element": "Tavle kol Om min",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1",
+          "saet": "vis",
+          "element": "Tavle kol In min",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1",
+          "saet": "vis",
+          "element": "Tavle streg",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje1 != ''",
+          "saet": "vis",
+          "element": "Tavle rk1 bund",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje1 != ''",
+          "saet": "vis",
+          "element": "Tavle rk1 maerke",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje1 != ''",
+          "saet": "vis",
+          "element": "Tavle rk1 linje",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje1 != ''",
+          "saet": "vis",
+          "element": "Tavle rk1 til",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje1 != ''",
+          "saet": "vis",
+          "element": "Tavle rk1 min",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgLinje1 indeholder 'S'",
+          "saet": "farve",
+          "element": "Tavle rk1 maerke",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgLinje1 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "Tavle rk1 linje",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk1 linje",
+          "til": "{AfgLinje1}",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk1 til",
+          "til": "{AfgTil1}",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk1 min",
+          "til": "{AfgMin1:heltal}",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgMin1 < 1",
+          "saet": "tekst",
+          "element": "Tavle rk1 min",
+          "til": "Nu",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje2 != ''",
+          "saet": "vis",
+          "element": "Tavle rk2 maerke",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje2 != ''",
+          "saet": "vis",
+          "element": "Tavle rk2 linje",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje2 != ''",
+          "saet": "vis",
+          "element": "Tavle rk2 til",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje2 != ''",
+          "saet": "vis",
+          "element": "Tavle rk2 min",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgLinje2 indeholder 'S'",
+          "saet": "farve",
+          "element": "Tavle rk2 maerke",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgLinje2 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "Tavle rk2 linje",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk2 linje",
+          "til": "{AfgLinje2}",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk2 til",
+          "til": "{AfgTil2}",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk2 min",
+          "til": "{AfgMin2:heltal}",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgMin2 < 1",
+          "saet": "tekst",
+          "element": "Tavle rk2 min",
+          "til": "Nu",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje3 != ''",
+          "saet": "vis",
+          "element": "Tavle rk3 bund",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje3 != ''",
+          "saet": "vis",
+          "element": "Tavle rk3 maerke",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje3 != ''",
+          "saet": "vis",
+          "element": "Tavle rk3 linje",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje3 != ''",
+          "saet": "vis",
+          "element": "Tavle rk3 til",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje3 != ''",
+          "saet": "vis",
+          "element": "Tavle rk3 min",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgLinje3 indeholder 'S'",
+          "saet": "farve",
+          "element": "Tavle rk3 maerke",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgLinje3 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "Tavle rk3 linje",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk3 linje",
+          "til": "{AfgLinje3}",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk3 til",
+          "til": "{AfgTil3}",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk3 min",
+          "til": "{AfgMin3:heltal}",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgMin3 < 1",
+          "saet": "tekst",
+          "element": "Tavle rk3 min",
+          "til": "Nu",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje4 != ''",
+          "saet": "vis",
+          "element": "Tavle rk4 maerke",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje4 != ''",
+          "saet": "vis",
+          "element": "Tavle rk4 linje",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje4 != ''",
+          "saet": "vis",
+          "element": "Tavle rk4 til",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje4 != ''",
+          "saet": "vis",
+          "element": "Tavle rk4 min",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgLinje4 indeholder 'S'",
+          "saet": "farve",
+          "element": "Tavle rk4 maerke",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgLinje4 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "Tavle rk4 linje",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk4 linje",
+          "til": "{AfgLinje4}",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk4 til",
+          "til": "{AfgTil4}",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk4 min",
+          "til": "{AfgMin4:heltal}",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgMin4 < 1",
+          "saet": "tekst",
+          "element": "Tavle rk4 min",
+          "til": "Nu",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje5 != ''",
+          "saet": "vis",
+          "element": "Tavle rk5 bund",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje5 != ''",
+          "saet": "vis",
+          "element": "Tavle rk5 maerke",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje5 != ''",
+          "saet": "vis",
+          "element": "Tavle rk5 linje",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje5 != ''",
+          "saet": "vis",
+          "element": "Tavle rk5 til",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje5 != ''",
+          "saet": "vis",
+          "element": "Tavle rk5 min",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgLinje5 indeholder 'S'",
+          "saet": "farve",
+          "element": "Tavle rk5 maerke",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgLinje5 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "Tavle rk5 linje",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk5 linje",
+          "til": "{AfgLinje5}",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk5 til",
+          "til": "{AfgTil5}",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk5 min",
+          "til": "{AfgMin5:heltal}",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgMin5 < 1",
+          "saet": "tekst",
+          "element": "Tavle rk5 min",
+          "til": "Nu",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje6 != ''",
+          "saet": "vis",
+          "element": "Tavle rk6 maerke",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje6 != ''",
+          "saet": "vis",
+          "element": "Tavle rk6 linje",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje6 != ''",
+          "saet": "vis",
+          "element": "Tavle rk6 til",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje6 != ''",
+          "saet": "vis",
+          "element": "Tavle rk6 min",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgLinje6 indeholder 'S'",
+          "saet": "farve",
+          "element": "Tavle rk6 maerke",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgLinje6 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "Tavle rk6 linje",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk6 linje",
+          "til": "{AfgLinje6}",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk6 til",
+          "til": "{AfgTil6}",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk6 min",
+          "til": "{AfgMin6:heltal}",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgMin6 < 1",
+          "saet": "tekst",
+          "element": "Tavle rk6 min",
+          "til": "Nu",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje7 != ''",
+          "saet": "vis",
+          "element": "Tavle rk7 bund",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje7 != ''",
+          "saet": "vis",
+          "element": "Tavle rk7 maerke",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje7 != ''",
+          "saet": "vis",
+          "element": "Tavle rk7 linje",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje7 != ''",
+          "saet": "vis",
+          "element": "Tavle rk7 til",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1 og AfgLinje7 != ''",
+          "saet": "vis",
+          "element": "Tavle rk7 min",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgLinje7 indeholder 'S'",
+          "saet": "farve",
+          "element": "Tavle rk7 maerke",
+          "til": "#1E5FD6",
+          "ellers": "#F5B800",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgLinje7 indeholder 'S'",
+          "saet": "tekstfarve",
+          "element": "Tavle rk7 linje",
+          "til": "#FFFFFF",
+          "ellers": "#1D1D1D",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk7 linje",
+          "til": "{AfgLinje7}",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk7 til",
+          "til": "{AfgTil7}",
+          "_ny": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Tavle rk7 min",
+          "til": "{AfgMin7:heltal}",
+          "_ny": true
+        },
+        {
+          "hvis": "AfgMin7 < 1",
+          "saet": "tekst",
+          "element": "Tavle rk7 min",
+          "til": "Nu",
+          "_ny": true
+        },
+        {
+          "hvis": "VedStop = 1",
+          "saet": "skjul",
+          "element": "Stopliste",
+          "_ny": true,
+          "_skjul": true
+        },
+        {
+          "hvis": "VedStop = 1",
+          "saet": "skjul",
+          "element": "Tidslinje",
+          "_ny": true,
+          "_skjul": true
+        },
+        {
+          "hvis": "VedStop = 1",
+          "saet": "skjul",
+          "element": "Pil",
+          "_ny": true,
+          "_skjul": true
+        },
+        {
+          "hvis": "VedStop = 1",
+          "saet": "skjul",
+          "element": "Minutter 1",
+          "_ny": true,
+          "_skjul": true
+        },
+        {
+          "hvis": "VedStop = 1",
+          "saet": "skjul",
+          "element": "Minutter 2",
+          "_ny": true,
+          "_skjul": true
+        },
+        {
+          "hvis": "VedStop = 1",
+          "saet": "skjul",
+          "element": "Minutter 3",
+          "_ny": true,
+          "_skjul": true
+        },
+        {
+          "saet": "tekst",
+          "element": "Debug afstand",
+          "til": "{VedStop}"
+        }
+      ],
+      "sider": {
+        "skift_hver": 12,
+        "glid": 0.8,
+        "sider": [
+          [
+            "Reklame"
+          ],
+          [
+            "Reklame 2"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "skaerm": "StopRaekke",
+    "aendringer": [
+      {
+        "funktion": "skjul",
+        "element": "HorizontalBox_5"
+      },
+      {
+        "funktion": "hoejde",
+        "element": "Spacer_2",
+        "vaerdi": 0
+      },
+      {
+        "funktion": "hoejde",
+        "element": "SizeBox_0",
+        "vaerdi": 56
+      },
+      {
+        "funktion": "klip",
+        "element": "SizeBox_0"
+      },
+      {
+        "funktion": "juster",
+        "element": "TextBlock_4",
+        "vaerdi": "top"
+      },
+      {
+        "funktion": "hoejde",
+        "element": "Spacer_4",
+        "vaerdi": 147
+      },
+      {
+        "funktion": "skrift",
+        "element": "TextBlock_4",
+        "vaegt": "SemiBold",
+        "stoerrelse": 30
+      },
+      {
+        "funktion": "tekstfarve",
+        "element": "TextBlock_4",
+        "vaerdi": "#1D1D1D"
+      },
+      {
+        "funktion": "farve",
+        "element": "Image_2",
+        "vaerdi": "#E2231A"
+      }
+    ]
+  },
+  {
+    "skaerm": "Driving",
+    "layout": {
+      "w": 1200,
+      "h": 764,
+      "bg": "#233257",
+      "items": [
+        {
+          "type": "gps",
+          "name": "Kort",
+          "x": 80,
+          "y": 98,
+          "w": 1120,
+          "h": 602,
+          "pitch": -25,
+          "afstand": 4000,
+          "vinkel": 35,
+          "baggrund": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\kort_bg.png",
+          "z": -20,
+          "color": "#3B4F7F",
+          "zoom": 0.15,
+          "vej": "#8E9CC4",
+          "storvej": "#C3CCE6"
+        },
+        {
+          "type": "box",
+          "name": "Statusbjaelke",
+          "x": 0,
+          "y": 0,
+          "w": 1200,
+          "h": 26,
+          "color": "#1F3FF0"
+        },
+        {
+          "type": "text",
+          "name": "Status ur",
+          "x": 10,
+          "y": 4,
+          "text": "7:30",
+          "size": 13,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "box",
+          "name": "Status ikoner",
+          "x": 1100,
+          "y": 2,
+          "w": 90,
+          "h": 22,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\status_ikoner.png"
+        },
+        {
+          "type": "box",
+          "name": "Header",
+          "x": 0,
+          "y": 26,
+          "w": 1200,
+          "h": 72,
+          "color": "#0A0A0A"
+        },
+        {
+          "type": "box",
+          "name": "Log ud",
+          "x": 0,
+          "y": 26,
+          "w": 80,
+          "h": 72,
+          "color": "#DE3B26",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_logud_rod.png"
+        },
+        {
+          "type": "box",
+          "name": "Linjeboks",
+          "x": 84,
+          "y": 30,
+          "w": 66,
+          "h": 64,
+          "color": "#1E8FD8"
+        },
+        {
+          "type": "text",
+          "name": "Linje",
+          "x": 84,
+          "y": 39,
+          "text": "5C",
+          "size": 28,
+          "bold": true,
+          "color": "#FFFFFF",
+          "w": 66,
+          "h": 46,
+          "align": "midt"
+        },
+        {
+          "type": "text",
+          "name": "Destination",
+          "x": 162,
+          "y": 38,
+          "size": 30,
+          "bold": true,
+          "color": "#FFFFFF",
+          "w": 714,
+          "h": 46,
+          "klip": true,
+          "text": "Husum Torv"
+        },
+        {
+          "type": "text",
+          "name": "Ur",
+          "x": 880,
+          "y": 30,
+          "text": "07:30:22",
+          "size": 42,
+          "bold": false,
+          "color": "#FFFFFF",
+          "w": 258,
+          "h": 64,
+          "align": "hoejre"
+        },
+        {
+          "type": "box",
+          "name": "Menu",
+          "x": 1146,
+          "y": 26,
+          "w": 54,
+          "h": 72,
+          "color": "#5CBF2A",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_menu.png"
+        },
+        {
+          "type": "box",
+          "name": "Sidebjaelke",
+          "x": 0,
+          "y": 98,
+          "w": 80,
+          "h": 602,
+          "color": "#15181D"
+        },
+        {
+          "type": "box",
+          "name": "Knap stop",
+          "x": 4,
+          "y": 102,
+          "w": 72,
+          "h": 84,
+          "color": "#15181D",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_stop3.png"
+        },
+        {
+          "type": "box",
+          "name": "Knap telefon",
+          "x": 4,
+          "y": 190,
+          "w": 72,
+          "h": 84,
+          "color": "#15181D",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_opkald3.png"
+        },
+        {
+          "type": "box",
+          "name": "Knap besked",
+          "x": 4,
+          "y": 278,
+          "w": 72,
+          "h": 84,
+          "color": "#15181D",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_besked3.png"
+        },
+        {
+          "type": "box",
+          "name": "NaesteBoks",
+          "x": 84,
+          "y": 102,
+          "w": 420,
+          "h": 158,
+          "color": "#3FA535"
+        },
+        {
+          "type": "text",
+          "name": "Naeste label",
+          "x": 90,
+          "y": 106,
+          "text": "Næste stop:",
+          "size": 11,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Zone label",
+          "x": 226,
+          "y": 106,
+          "text": "Zone 2",
+          "size": 11,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Planlagt label",
+          "x": 346,
+          "y": 106,
+          "text": "Planlagt ankomst:",
+          "size": 11,
+          "bold": false,
+          "color": "#FFFFFF",
+          "w": 150,
+          "h": 18,
+          "align": "hoejre"
+        },
+        {
+          "type": "text",
+          "name": "Naeste stop",
+          "x": 90,
+          "y": 130,
+          "size": 22,
+          "bold": true,
+          "color": "#FFFFFF",
+          "w": 262,
+          "h": 40,
+          "klip": true,
+          "text": "Nørrebro St."
+        },
+        {
+          "type": "text",
+          "name": "Naeste tid",
+          "x": 336,
+          "y": 122,
+          "text": "07:31:00",
+          "size": 22,
+          "bold": false,
+          "color": "#FFFFFF",
+          "w": 160,
+          "h": 36,
+          "align": "hoejre"
+        },
+        {
+          "type": "text",
+          "name": "Forsinkelse label",
+          "x": 346,
+          "y": 168,
+          "text": "Forsinkelse:",
+          "size": 11,
+          "bold": false,
+          "color": "#FFFFFF",
+          "w": 150,
+          "h": 18,
+          "align": "hoejre"
+        },
+        {
+          "type": "text",
+          "name": "Forsinkelse",
+          "x": 336,
+          "y": 184,
+          "text": "+0:16",
+          "size": 26,
+          "bold": true,
+          "color": "#FFFFFF",
+          "w": 160,
+          "h": 42,
+          "align": "hoejre"
+        },
+        {
+          "type": "box",
+          "name": "Trekant",
+          "x": 286,
+          "y": 246,
+          "w": 16,
+          "h": 10,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\trekant.png"
+        },
+        {
+          "type": "box",
+          "name": "SidsteBoks",
+          "x": 84,
+          "y": 264,
+          "w": 420,
+          "h": 82,
+          "color": "#3FA535"
+        },
+        {
+          "type": "text",
+          "name": "Sidste label",
+          "x": 90,
+          "y": 268,
+          "text": "Sidste stop:",
+          "size": 11,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Zone label 2",
+          "x": 226,
+          "y": 268,
+          "text": "Zone 2",
+          "size": 11,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Planlagt label 2",
+          "x": 346,
+          "y": 268,
+          "text": "Planlagt ankomst:",
+          "size": 11,
+          "bold": false,
+          "color": "#FFFFFF",
+          "w": 150,
+          "h": 18,
+          "align": "hoejre"
+        },
+        {
+          "type": "text",
+          "name": "Sidste stop",
+          "x": 90,
+          "y": 292,
+          "text": "Husum Torv Sløjfen",
+          "size": 18,
+          "bold": true,
+          "color": "#FFFFFF",
+          "w": 262,
+          "h": 32,
+          "klip": true
+        },
+        {
+          "type": "text",
+          "name": "Sidste tid",
+          "x": 336,
+          "y": 286,
+          "text": "07:47:00",
+          "size": 22,
+          "bold": false,
+          "color": "#FFFFFF",
+          "w": 160,
+          "h": 36,
+          "align": "hoejre"
+        },
+        {
+          "type": "box",
+          "name": "AfgangBoks",
+          "x": 84,
+          "y": 264,
+          "w": 420,
+          "h": 82,
+          "color": "#1E5FD6"
+        },
+        {
+          "type": "text",
+          "name": "Afgang label",
+          "x": 90,
+          "y": 268,
+          "text": "Tag afgang:",
+          "size": 11,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Afgang tid",
+          "x": 90,
+          "y": 286,
+          "text": "07:30:00",
+          "size": 30,
+          "bold": true,
+          "color": "#FFFFFF",
+          "w": 220,
+          "h": 46
+        },
+        {
+          "type": "box",
+          "name": "Bundbjaelke",
+          "x": 0,
+          "y": 700,
+          "w": 1200,
+          "h": 18,
+          "color": "#1F3FF0"
+        },
+        {
+          "type": "text",
+          "name": "Koersel",
+          "x": 8,
+          "y": 702,
+          "text": "Kørsel: 1504",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Nummer",
+          "x": 360,
+          "y": 702,
+          "text": "92590",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Kunde",
+          "x": 600,
+          "y": 702,
+          "text": "Kunde: GoCollective",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Enhed",
+          "x": 980,
+          "y": 702,
+          "text": "00c6c7b4b8d035   v 2.6.7",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "box",
+          "name": "Navigation",
+          "x": 0,
+          "y": 718,
+          "w": 1200,
+          "h": 46,
+          "color": "#F4F4F6"
+        },
+        {
+          "type": "box",
+          "name": "Nav menu",
+          "x": 690,
+          "y": 721,
+          "w": 40,
+          "h": 40,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\nav_menu.png"
+        },
+        {
+          "type": "box",
+          "name": "Nav hjem",
+          "x": 846,
+          "y": 721,
+          "w": 40,
+          "h": 40,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\nav_hjem.png"
+        },
+        {
+          "type": "box",
+          "name": "Nav tilbage",
+          "x": 1010,
+          "y": 721,
+          "w": 40,
+          "h": 40,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\nav_tilbage.png"
+        },
+        {
+          "type": "box",
+          "name": "Stopring",
+          "x": 600,
+          "y": 400,
+          "w": 260,
+          "h": 104,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\stop_ring2.png",
+          "ring": true,
+          "z": -12
+        }
+      ],
+      "regler": [
+        {
+          "hvis": "Forsinkelse > 0",
+          "saet": "farve",
+          "element": "NaesteBoks",
+          "til": "#DE3B26",
+          "ellers": "#3FA535",
+          "glid": 0.6
+        },
+        {
+          "hvis": "Forsinkelse > 0",
+          "saet": "farve",
+          "element": "SidsteBoks",
+          "til": "#DE3B26",
+          "ellers": "#3FA535",
+          "glid": 0.6
+        },
+        {
+          "hvis": "Forsinkelse < 0",
+          "saet": "tekst",
+          "element": "Forsinkelse label",
+          "til": "Før tid:",
+          "ellers": "Forsinkelse:"
+        },
+        {
+          "saet": "tekst",
+          "element": "Forsinkelse",
+          "til": "{Forsinkelse:m:ss}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Naeste stop",
+          "til": "{NaesteStopNavn}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Naeste tid",
+          "til": "{NaesteTid:hh:mm:ss}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Destination",
+          "til": "{SidsteStopNavn}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Sidste stop",
+          "til": "{SidsteStopNavn}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Sidste tid",
+          "til": "{SidsteTidSek:hh:mm:ss}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Ur",
+          "til": "{KlokkeSek:hh:mm:ss}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Status ur",
+          "til": "{Klokken:hh:mm}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Linje",
+          "til": "{LinjeNr}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Afgang tid",
+          "til": "{AktuelAfgang:hh:mm:ss}"
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "vis",
+          "element": "AfgangBoks",
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flytx",
+          "element": "AfgangBoks",
+          "til": 0,
+          "ellers": -120,
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "vis",
+          "element": "Afgang label",
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flytx",
+          "element": "Afgang label",
+          "til": 0,
+          "ellers": -120,
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "vis",
+          "element": "Afgang tid",
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flytx",
+          "element": "Afgang tid",
+          "til": 0,
+          "ellers": -120,
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flyty",
+          "element": "SidsteBoks",
+          "til": 86,
+          "ellers": 0,
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flyty",
+          "element": "Sidste label",
+          "til": 86,
+          "ellers": 0,
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flyty",
+          "element": "Zone label 2",
+          "til": 86,
+          "ellers": 0,
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flyty",
+          "element": "Planlagt label 2",
+          "til": 86,
+          "ellers": 0,
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flyty",
+          "element": "Sidste stop",
+          "til": 86,
+          "ellers": 0,
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flyty",
+          "element": "Sidste tid",
+          "til": 86,
+          "ellers": 0,
+          "glid": 0.25
+        }
+      ],
+      "behold": [
+        "GridPanel_156"
+      ]
+    },
+    "aendringer": [
+      {
+        "funktion": "skjul",
+        "element": "Border"
+      },
+      {
+        "funktion": "skjul",
+        "element": "Border_84"
+      },
+      {
+        "funktion": "skjul",
+        "element": "UMG_TB_NAtron_Time_Icons_C_Driving"
+      },
+      {
+        "funktion": "skjul",
+        "element": "UMG_TB_NAtron_Bottom_Row_Buttons_C_1"
+      },
+      {
+        "funktion": "skjul",
+        "element": "ButtonLSA"
+      }
+    ]
+  },
+  {
+    "skaerm": "Main",
+    "layout": {
+      "w": 1200,
+      "h": 764,
+      "bg": "#233257",
+      "items": [
+        {
+          "type": "gps",
+          "name": "Kort",
+          "x": 80,
+          "y": 98,
+          "w": 1120,
+          "h": 602,
+          "pitch": -25,
+          "afstand": 4000,
+          "vinkel": 35,
+          "baggrund": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\kort_bg.png",
+          "z": -20,
+          "color": "#3B4F7F",
+          "zoom": 0.15,
+          "vej": "#8E9CC4",
+          "storvej": "#C3CCE6"
+        },
+        {
+          "type": "box",
+          "name": "Statusbjaelke",
+          "x": 0,
+          "y": 0,
+          "w": 1200,
+          "h": 26,
+          "color": "#1F3FF0"
+        },
+        {
+          "type": "text",
+          "name": "Status ur",
+          "x": 10,
+          "y": 4,
+          "text": "7:30",
+          "size": 13,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "box",
+          "name": "Status ikoner",
+          "x": 1100,
+          "y": 2,
+          "w": 90,
+          "h": 22,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\status_ikoner.png"
+        },
+        {
+          "type": "box",
+          "name": "Header",
+          "x": 0,
+          "y": 26,
+          "w": 1200,
+          "h": 72,
+          "color": "#0A0A0A"
+        },
+        {
+          "type": "box",
+          "name": "Log ud",
+          "x": 0,
+          "y": 26,
+          "w": 80,
+          "h": 72,
+          "color": "#DE3B26",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_logud_rod.png"
+        },
+        {
+          "type": "box",
+          "name": "Linjeboks",
+          "x": 84,
+          "y": 30,
+          "w": 66,
+          "h": 64,
+          "color": "#1E8FD8"
+        },
+        {
+          "type": "text",
+          "name": "Linje",
+          "x": 84,
+          "y": 39,
+          "text": "5C",
+          "size": 28,
+          "bold": true,
+          "color": "#FFFFFF",
+          "w": 66,
+          "h": 46,
+          "align": "midt"
+        },
+        {
+          "type": "text",
+          "name": "Destination",
+          "x": 162,
+          "y": 38,
+          "size": 30,
+          "bold": true,
+          "color": "#FFFFFF",
+          "w": 714,
+          "h": 46,
+          "klip": true,
+          "text": "Husum Torv"
+        },
+        {
+          "type": "text",
+          "name": "Ur",
+          "x": 880,
+          "y": 30,
+          "text": "07:30:22",
+          "size": 42,
+          "bold": false,
+          "color": "#FFFFFF",
+          "w": 258,
+          "h": 64,
+          "align": "hoejre"
+        },
+        {
+          "type": "box",
+          "name": "Menu",
+          "x": 1146,
+          "y": 26,
+          "w": 54,
+          "h": 72,
+          "color": "#5CBF2A",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_menu.png"
+        },
+        {
+          "type": "box",
+          "name": "Sidebjaelke",
+          "x": 0,
+          "y": 98,
+          "w": 80,
+          "h": 602,
+          "color": "#15181D"
+        },
+        {
+          "type": "box",
+          "name": "Knap stop",
+          "x": 4,
+          "y": 102,
+          "w": 72,
+          "h": 84,
+          "color": "#15181D",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_stop3.png"
+        },
+        {
+          "type": "box",
+          "name": "Knap telefon",
+          "x": 4,
+          "y": 190,
+          "w": 72,
+          "h": 84,
+          "color": "#15181D",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_opkald3.png"
+        },
+        {
+          "type": "box",
+          "name": "Knap besked",
+          "x": 4,
+          "y": 278,
+          "w": 72,
+          "h": 84,
+          "color": "#15181D",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_besked3.png"
+        },
+        {
+          "type": "box",
+          "name": "NaesteBoks",
+          "x": 84,
+          "y": 102,
+          "w": 420,
+          "h": 158,
+          "color": "#3FA535"
+        },
+        {
+          "type": "text",
+          "name": "Naeste label",
+          "x": 90,
+          "y": 106,
+          "text": "Næste stop:",
+          "size": 11,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Zone label",
+          "x": 226,
+          "y": 106,
+          "text": "Zone 2",
+          "size": 11,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Planlagt label",
+          "x": 346,
+          "y": 106,
+          "text": "Planlagt ankomst:",
+          "size": 11,
+          "bold": false,
+          "color": "#FFFFFF",
+          "w": 150,
+          "h": 18,
+          "align": "hoejre"
+        },
+        {
+          "type": "text",
+          "name": "Naeste stop",
+          "x": 90,
+          "y": 130,
+          "size": 22,
+          "bold": true,
+          "color": "#FFFFFF",
+          "w": 262,
+          "h": 40,
+          "klip": true,
+          "text": "Nørrebro St."
+        },
+        {
+          "type": "text",
+          "name": "Naeste tid",
+          "x": 336,
+          "y": 122,
+          "text": "07:31:00",
+          "size": 22,
+          "bold": false,
+          "color": "#FFFFFF",
+          "w": 160,
+          "h": 36,
+          "align": "hoejre"
+        },
+        {
+          "type": "text",
+          "name": "Forsinkelse label",
+          "x": 346,
+          "y": 168,
+          "text": "Forsinkelse:",
+          "size": 11,
+          "bold": false,
+          "color": "#FFFFFF",
+          "w": 150,
+          "h": 18,
+          "align": "hoejre"
+        },
+        {
+          "type": "text",
+          "name": "Forsinkelse",
+          "x": 336,
+          "y": 184,
+          "text": "+0:16",
+          "size": 26,
+          "bold": true,
+          "color": "#FFFFFF",
+          "w": 160,
+          "h": 42,
+          "align": "hoejre"
+        },
+        {
+          "type": "box",
+          "name": "Trekant",
+          "x": 286,
+          "y": 246,
+          "w": 16,
+          "h": 10,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\trekant.png"
+        },
+        {
+          "type": "box",
+          "name": "SidsteBoks",
+          "x": 84,
+          "y": 264,
+          "w": 420,
+          "h": 82,
+          "color": "#3FA535"
+        },
+        {
+          "type": "text",
+          "name": "Sidste label",
+          "x": 90,
+          "y": 268,
+          "text": "Sidste stop:",
+          "size": 11,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Zone label 2",
+          "x": 226,
+          "y": 268,
+          "text": "Zone 2",
+          "size": 11,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Planlagt label 2",
+          "x": 346,
+          "y": 268,
+          "text": "Planlagt ankomst:",
+          "size": 11,
+          "bold": false,
+          "color": "#FFFFFF",
+          "w": 150,
+          "h": 18,
+          "align": "hoejre"
+        },
+        {
+          "type": "text",
+          "name": "Sidste stop",
+          "x": 90,
+          "y": 292,
+          "text": "Husum Torv Sløjfen",
+          "size": 18,
+          "bold": true,
+          "color": "#FFFFFF",
+          "w": 262,
+          "h": 32,
+          "klip": true
+        },
+        {
+          "type": "text",
+          "name": "Sidste tid",
+          "x": 336,
+          "y": 286,
+          "text": "07:47:00",
+          "size": 22,
+          "bold": false,
+          "color": "#FFFFFF",
+          "w": 160,
+          "h": 36,
+          "align": "hoejre"
+        },
+        {
+          "type": "box",
+          "name": "AfgangBoks",
+          "x": 84,
+          "y": 264,
+          "w": 420,
+          "h": 82,
+          "color": "#1E5FD6"
+        },
+        {
+          "type": "text",
+          "name": "Afgang label",
+          "x": 90,
+          "y": 268,
+          "text": "Tag afgang:",
+          "size": 11,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Afgang tid",
+          "x": 90,
+          "y": 286,
+          "text": "07:30:00",
+          "size": 30,
+          "bold": true,
+          "color": "#FFFFFF",
+          "w": 220,
+          "h": 46
+        },
+        {
+          "type": "box",
+          "name": "Bundbjaelke",
+          "x": 0,
+          "y": 700,
+          "w": 1200,
+          "h": 18,
+          "color": "#1F3FF0"
+        },
+        {
+          "type": "text",
+          "name": "Koersel",
+          "x": 8,
+          "y": 702,
+          "text": "Kørsel: 1504",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Nummer",
+          "x": 360,
+          "y": 702,
+          "text": "92590",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Kunde",
+          "x": 600,
+          "y": 702,
+          "text": "Kunde: GoCollective",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Enhed",
+          "x": 980,
+          "y": 702,
+          "text": "00c6c7b4b8d035   v 2.6.7",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "box",
+          "name": "Navigation",
+          "x": 0,
+          "y": 718,
+          "w": 1200,
+          "h": 46,
+          "color": "#F4F4F6"
+        },
+        {
+          "type": "box",
+          "name": "Nav menu",
+          "x": 690,
+          "y": 721,
+          "w": 40,
+          "h": 40,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\nav_menu.png"
+        },
+        {
+          "type": "box",
+          "name": "Nav hjem",
+          "x": 846,
+          "y": 721,
+          "w": 40,
+          "h": 40,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\nav_hjem.png"
+        },
+        {
+          "type": "box",
+          "name": "Nav tilbage",
+          "x": 1010,
+          "y": 721,
+          "w": 40,
+          "h": 40,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\nav_tilbage.png"
+        },
+        {
+          "type": "box",
+          "name": "Stopring",
+          "x": 600,
+          "y": 400,
+          "w": 260,
+          "h": 104,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\stop_ring2.png",
+          "ring": true,
+          "z": -12
+        }
+      ],
+      "regler": [
+        {
+          "hvis": "Forsinkelse > 0",
+          "saet": "farve",
+          "element": "NaesteBoks",
+          "til": "#DE3B26",
+          "ellers": "#3FA535",
+          "glid": 0.6
+        },
+        {
+          "hvis": "Forsinkelse > 0",
+          "saet": "farve",
+          "element": "SidsteBoks",
+          "til": "#DE3B26",
+          "ellers": "#3FA535",
+          "glid": 0.6
+        },
+        {
+          "hvis": "Forsinkelse < 0",
+          "saet": "tekst",
+          "element": "Forsinkelse label",
+          "til": "Før tid:",
+          "ellers": "Forsinkelse:"
+        },
+        {
+          "saet": "tekst",
+          "element": "Forsinkelse",
+          "til": "{Forsinkelse:m:ss}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Naeste stop",
+          "til": "{NaesteStopNavn}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Naeste tid",
+          "til": "{NaesteTid:hh:mm:ss}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Destination",
+          "til": "{SidsteStopNavn}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Sidste stop",
+          "til": "{SidsteStopNavn}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Sidste tid",
+          "til": "{SidsteTidSek:hh:mm:ss}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Ur",
+          "til": "{KlokkeSek:hh:mm:ss}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Status ur",
+          "til": "{Klokken:hh:mm}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Linje",
+          "til": "{LinjeNr}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Afgang tid",
+          "til": "{AktuelAfgang:hh:mm:ss}"
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "vis",
+          "element": "AfgangBoks",
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flytx",
+          "element": "AfgangBoks",
+          "til": 0,
+          "ellers": -120,
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "vis",
+          "element": "Afgang label",
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flytx",
+          "element": "Afgang label",
+          "til": 0,
+          "ellers": -120,
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "vis",
+          "element": "Afgang tid",
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flytx",
+          "element": "Afgang tid",
+          "til": 0,
+          "ellers": -120,
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flyty",
+          "element": "SidsteBoks",
+          "til": 86,
+          "ellers": 0,
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flyty",
+          "element": "Sidste label",
+          "til": 86,
+          "ellers": 0,
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flyty",
+          "element": "Zone label 2",
+          "til": 86,
+          "ellers": 0,
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flyty",
+          "element": "Planlagt label 2",
+          "til": 86,
+          "ellers": 0,
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flyty",
+          "element": "Sidste stop",
+          "til": 86,
+          "ellers": 0,
+          "glid": 0.25
+        },
+        {
+          "hvis": "HolderVedStop = 1",
+          "saet": "flyty",
+          "element": "Sidste tid",
+          "til": 86,
+          "ellers": 0,
+          "glid": 0.25
+        }
+      ],
+      "behold": []
+    },
+    "aendringer": [
+      {
+        "funktion": "skjul",
+        "element": "Border"
+      },
+      {
+        "funktion": "skjul",
+        "element": "Border_84"
+      },
+      {
+        "funktion": "skjul",
+        "element": "UMG_TB_NAtron_Time_Icons_C_Driving"
+      },
+      {
+        "funktion": "skjul",
+        "element": "UMG_TB_NAtron_Bottom_Row_Buttons_C_1"
+      },
+      {
+        "funktion": "skjul",
+        "element": "ButtonLSA"
+      }
+    ]
+  },
+  {
+    "skaerm": "Start",
+    "layout": {
+      "w": 1200,
+      "h": 764,
+      "bg": "#15181D",
+      "items": [
+        {
+          "type": "box",
+          "name": "Baggrund",
+          "x": 0,
+          "y": 0,
+          "w": 1200,
+          "h": 764,
+          "color": "#15181D",
+          "z": -6
+        },
+        {
+          "type": "gps",
+          "name": "Kort",
+          "x": 80,
+          "y": 98,
+          "w": 1120,
+          "h": 602,
+          "pitch": -25,
+          "afstand": 4000,
+          "vinkel": 35,
+          "baggrund": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\kort_bg.png",
+          "z": -20,
+          "color": "#3B4F7F",
+          "zoom": 0.15,
+          "vej": "#8E9CC4",
+          "storvej": "#C3CCE6"
+        },
+        {
+          "type": "box",
+          "name": "Statusbjaelke",
+          "x": 0,
+          "y": 0,
+          "w": 1200,
+          "h": 26,
+          "color": "#1F3FF0"
+        },
+        {
+          "type": "text",
+          "name": "Status ur",
+          "x": 10,
+          "y": 4,
+          "text": "7:30",
+          "size": 13,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "box",
+          "name": "Status ikoner",
+          "x": 1100,
+          "y": 2,
+          "w": 90,
+          "h": 22,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\status_ikoner.png"
+        },
+        {
+          "type": "box",
+          "name": "Header",
+          "x": 0,
+          "y": 26,
+          "w": 1200,
+          "h": 72,
+          "color": "#0A0A0A"
+        },
+        {
+          "type": "box",
+          "name": "Log ind knap",
+          "x": 0,
+          "y": 26,
+          "w": 80,
+          "h": 72,
+          "color": "#5CBF2A",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_logind.png"
+        },
+        {
+          "type": "text",
+          "name": "Titel",
+          "x": 100,
+          "y": 40,
+          "text": "Atron",
+          "size": 28,
+          "bold": true,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Undertitel",
+          "x": 219,
+          "y": 54,
+          "text": "Tryk på den grønne knap for at logge ind",
+          "size": 16,
+          "color": "#C9D1DC"
+        },
+        {
+          "type": "text",
+          "name": "Ur",
+          "x": 880,
+          "y": 30,
+          "text": "07:30:22",
+          "size": 42,
+          "bold": false,
+          "color": "#FFFFFF",
+          "w": 258,
+          "h": 64,
+          "align": "hoejre"
+        },
+        {
+          "type": "box",
+          "name": "Sidebjaelke",
+          "x": 0,
+          "y": 98,
+          "w": 80,
+          "h": 602,
+          "color": "#15181D"
+        },
+        {
+          "type": "box",
+          "name": "Knap stop",
+          "x": 4,
+          "y": 102,
+          "w": 72,
+          "h": 84,
+          "color": "#15181D",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_stop3.png"
+        },
+        {
+          "type": "box",
+          "name": "Knap telefon",
+          "x": 4,
+          "y": 190,
+          "w": 72,
+          "h": 84,
+          "color": "#15181D",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_opkald3.png"
+        },
+        {
+          "type": "box",
+          "name": "Knap besked",
+          "x": 4,
+          "y": 278,
+          "w": 72,
+          "h": 84,
+          "color": "#15181D",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_besked3.png"
+        },
+        {
+          "type": "box",
+          "name": "Bundbjaelke",
+          "x": 0,
+          "y": 700,
+          "w": 1200,
+          "h": 18,
+          "color": "#1F3FF0"
+        },
+        {
+          "type": "text",
+          "name": "Koersel",
+          "x": 8,
+          "y": 702,
+          "text": "Kørsel: 1504",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Nummer",
+          "x": 360,
+          "y": 702,
+          "text": "92590",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Kunde",
+          "x": 600,
+          "y": 702,
+          "text": "Kunde: GoCollective",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Enhed",
+          "x": 980,
+          "y": 702,
+          "text": "00c6c7b4b8d035   v 2.6.7",
+          "size": 9,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "box",
+          "name": "Navigation",
+          "x": 0,
+          "y": 718,
+          "w": 1200,
+          "h": 46,
+          "color": "#F4F4F6"
+        },
+        {
+          "type": "box",
+          "name": "Nav menu",
+          "x": 690,
+          "y": 721,
+          "w": 40,
+          "h": 40,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\nav_menu.png"
+        },
+        {
+          "type": "box",
+          "name": "Nav hjem",
+          "x": 846,
+          "y": 721,
+          "w": 40,
+          "h": 40,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\nav_hjem.png"
+        },
+        {
+          "type": "box",
+          "name": "Nav tilbage",
+          "x": 1010,
+          "y": 721,
+          "w": 40,
+          "h": 40,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\nav_tilbage.png"
+        },
+        {
+          "type": "box",
+          "name": "Start knap",
+          "spil": "ButtonStart",
+          "x": 0,
+          "y": 26,
+          "w": 80,
+          "h": 72,
+          "z": 100
+        }
+      ],
+      "regler": [
+        {
+          "saet": "tekst",
+          "element": "Ur",
+          "til": "{KlokkeSek:hh:mm:ss}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Status ur",
+          "til": "{Klokken:hh:mm}"
+        }
+      ],
+      "behold": []
+    },
+    "aendringer": [
+      {
+        "funktion": "egenskab",
+        "element": "ButtonStart",
+        "vaerdi": {
+          "navn": "render_opacity",
+          "vaerdi": 0.0
+        }
+      }
+    ]
+  },
+  {
+    "skaerm": "LogIn",
+    "layout": {
+      "w": 1200,
+      "h": 764,
+      "bg": "#15181D",
+      "items": [
+        {
+          "type": "box",
+          "name": "Baggrund",
+          "x": 0,
+          "y": 0,
+          "w": 1200,
+          "h": 764,
+          "color": "#15181D",
+          "z": -6
+        },
+        {
+          "type": "box",
+          "name": "Statusbjaelke",
+          "x": 0,
+          "y": 0,
+          "w": 1200,
+          "h": 26,
+          "color": "#1F3FF0"
+        },
+        {
+          "type": "text",
+          "name": "Status ur",
+          "x": 10,
+          "y": 4,
+          "text": "7:30",
+          "size": 13,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "box",
+          "name": "Status ikoner",
+          "x": 1100,
+          "y": 2,
+          "w": 90,
+          "h": 22,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\status_ikoner.png"
+        },
+        {
+          "type": "box",
+          "name": "Header",
+          "x": 0,
+          "y": 26,
+          "w": 1200,
+          "h": 72,
+          "color": "#0A0A0A"
+        },
+        {
+          "type": "box",
+          "name": "Log ind knap",
+          "x": 0,
+          "y": 26,
+          "w": 80,
+          "h": 72,
+          "color": "#5CBF2A",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_logind.png"
+        },
+        {
+          "type": "text",
+          "name": "Titel",
+          "x": 100,
+          "y": 40,
+          "text": "Log ind",
+          "size": 28,
+          "bold": true,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Undertitel",
+          "x": 257,
+          "y": 54,
+          "text": "Indtast sælgernummer og PIN",
+          "size": 16,
+          "color": "#C9D1DC"
+        },
+        {
+          "type": "text",
+          "name": "Ur",
+          "x": 880,
+          "y": 30,
+          "text": "07:30:22",
+          "size": 42,
+          "bold": false,
+          "color": "#FFFFFF",
+          "w": 258,
+          "h": 64,
+          "align": "hoejre"
+        },
+        {
+          "type": "box",
+          "name": "Sidebjaelke",
+          "x": 0,
+          "y": 98,
+          "w": 80,
+          "h": 602,
+          "color": "#15181D"
+        },
+        {
+          "type": "box",
+          "name": "Knap stop",
+          "x": 4,
+          "y": 102,
+          "w": 72,
+          "h": 84,
+          "color": "#15181D",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_stop3.png"
+        },
+        {
+          "type": "box",
+          "name": "Knap telefon",
+          "x": 4,
+          "y": 190,
+          "w": 72,
+          "h": 84,
+          "color": "#15181D",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_opkald3.png"
+        },
+        {
+          "type": "box",
+          "name": "Knap besked",
+          "x": 4,
+          "y": 278,
+          "w": 72,
+          "h": 84,
+          "color": "#15181D",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_besked3.png"
+        },
+        {
+          "type": "box",
+          "name": "Kort baggrund",
+          "x": 80,
+          "y": 98,
+          "w": 580,
+          "h": 602,
+          "color": "#20252C",
+          "z": -5
+        },
+        {
+          "type": "box",
+          "name": "Numpad baggrund",
+          "x": 660,
+          "y": 98,
+          "w": 540,
+          "h": 602,
+          "color": "#15181D",
+          "z": -5
+        },
+        {
+          "type": "text",
+          "name": "Info",
+          "spil": "TextBlock_142",
+          "x": 120,
+          "y": 128,
+          "size": 15,
+          "bold": true,
+          "color": "#C9D1DC",
+          "z": 100
+        },
+        {
+          "type": "text",
+          "name": "Felt 1 navn",
+          "x": 120,
+          "y": 232,
+          "text": "Sælger",
+          "size": 20,
+          "bold": true,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Felt 2 navn",
+          "x": 120,
+          "y": 342,
+          "text": "PIN",
+          "size": 20,
+          "bold": true,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "box",
+          "name": "Vaelg 1",
+          "spil": "ButtonSelectLineEdit",
+          "x": 224,
+          "y": 214,
+          "w": 52,
+          "h": 64,
+          "z": 100
+        },
+        {
+          "type": "box",
+          "name": "Felt 1",
+          "spil": "SellerEdit",
+          "x": 286,
+          "y": 214,
+          "w": 336,
+          "h": 64,
+          "z": 100
+        },
+        {
+          "type": "box",
+          "name": "Vaelg 2",
+          "spil": "ButtonSelectTour",
+          "x": 224,
+          "y": 324,
+          "w": 52,
+          "h": 64,
+          "z": 100
+        },
+        {
+          "type": "box",
+          "name": "Felt 2",
+          "spil": "PINEdit",
+          "x": 286,
+          "y": 324,
+          "w": 336,
+          "h": 64,
+          "z": 100
+        },
+        {
+          "type": "box",
+          "name": "OK",
+          "spil": "ButtonOK",
+          "x": 120,
+          "y": 600,
+          "w": 502,
+          "h": 72,
+          "z": 100
+        },
+        {
+          "type": "box",
+          "name": "Numpad",
+          "spil": "Numpad",
+          "x": 676,
+          "y": 124,
+          "w": 492,
+          "h": 552,
+          "z": 100
+        },
+        {
+          "type": "box",
+          "name": "Bundknapper",
+          "spil": "BottomButtons",
+          "x": 0,
+          "y": 700,
+          "w": 1200,
+          "h": 64,
+          "z": 100
+        }
+      ],
+      "regler": [
+        {
+          "saet": "tekst",
+          "element": "Ur",
+          "til": "{KlokkeSek:hh:mm:ss}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Status ur",
+          "til": "{Klokken:hh:mm}"
+        }
+      ],
+      "behold": []
+    },
+    "aendringer": [
+      {
+        "funktion": "farve",
+        "skaerm": "Numpad",
+        "element": "Image_BG",
+        "vaerdi": "#15181D"
+      },
+      {
+        "funktion": "farve",
+        "skaerm": "/Game/UI/Berlin/Menu/Atron/NewAtron/Widgets/UMG_TB_NAtron_Bottom_Row_Buttons",
+        "element": "Image_BG",
+        "vaerdi": "#0F1115"
+      },
+      {
+        "funktion": "farve",
+        "skaerm": "/Game/UI/Berlin/Menu/Atron/NewAtron/Widgets/UMG_TB_NAtron_Bottom_Row_Buttons",
+        "element": "Border_BottomLeftColor",
+        "vaerdi": "#0F1115"
+      }
+    ]
+  },
+  {
+    "skaerm": "Tur",
+    "layout": {
+      "w": 1200,
+      "h": 764,
+      "bg": "#15181D",
+      "items": [
+        {
+          "type": "box",
+          "name": "Baggrund",
+          "x": 0,
+          "y": 0,
+          "w": 1200,
+          "h": 764,
+          "color": "#15181D",
+          "z": -6
+        },
+        {
+          "type": "box",
+          "name": "Statusbjaelke",
+          "x": 0,
+          "y": 0,
+          "w": 1200,
+          "h": 26,
+          "color": "#1F3FF0"
+        },
+        {
+          "type": "text",
+          "name": "Status ur",
+          "x": 10,
+          "y": 4,
+          "text": "7:30",
+          "size": 13,
+          "bold": false,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "box",
+          "name": "Status ikoner",
+          "x": 1100,
+          "y": 2,
+          "w": 90,
+          "h": 22,
+          "color": "#FFFFFF",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\status_ikoner.png"
+        },
+        {
+          "type": "box",
+          "name": "Header",
+          "x": 0,
+          "y": 26,
+          "w": 1200,
+          "h": 72,
+          "color": "#0A0A0A"
+        },
+        {
+          "type": "box",
+          "name": "Log ind knap",
+          "x": 0,
+          "y": 26,
+          "w": 80,
+          "h": 72,
+          "color": "#5CBF2A",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_logind.png"
+        },
+        {
+          "type": "text",
+          "name": "Titel",
+          "x": 100,
+          "y": 40,
+          "text": "Log ind",
+          "size": 28,
+          "bold": true,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Undertitel",
+          "x": 257,
+          "y": 54,
+          "text": "Indtast linje og tur",
+          "size": 16,
+          "color": "#C9D1DC"
+        },
+        {
+          "type": "text",
+          "name": "Ur",
+          "x": 880,
+          "y": 30,
+          "text": "07:30:22",
+          "size": 42,
+          "bold": false,
+          "color": "#FFFFFF",
+          "w": 258,
+          "h": 64,
+          "align": "hoejre"
+        },
+        {
+          "type": "box",
+          "name": "Sidebjaelke",
+          "x": 0,
+          "y": 98,
+          "w": 80,
+          "h": 602,
+          "color": "#15181D"
+        },
+        {
+          "type": "box",
+          "name": "Knap stop",
+          "x": 4,
+          "y": 102,
+          "w": 72,
+          "h": 84,
+          "color": "#15181D",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_stop3.png"
+        },
+        {
+          "type": "box",
+          "name": "Knap telefon",
+          "x": 4,
+          "y": 190,
+          "w": 72,
+          "h": 84,
+          "color": "#15181D",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_opkald3.png"
+        },
+        {
+          "type": "box",
+          "name": "Knap besked",
+          "x": 4,
+          "y": 278,
+          "w": 72,
+          "h": 84,
+          "color": "#15181D",
+          "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\knap_besked3.png"
+        },
+        {
+          "type": "box",
+          "name": "Kort baggrund",
+          "x": 80,
+          "y": 98,
+          "w": 580,
+          "h": 602,
+          "color": "#20252C",
+          "z": -5
+        },
+        {
+          "type": "box",
+          "name": "Numpad baggrund",
+          "x": 660,
+          "y": 98,
+          "w": 540,
+          "h": 602,
+          "color": "#15181D",
+          "z": -5
+        },
+        {
+          "type": "text",
+          "name": "Info",
+          "spil": "TextBlock_142",
+          "x": 120,
+          "y": 128,
+          "size": 15,
+          "bold": true,
+          "color": "#C9D1DC",
+          "z": 100
+        },
+        {
+          "type": "text",
+          "name": "Felt 1 navn",
+          "x": 120,
+          "y": 232,
+          "text": "Linje",
+          "size": 20,
+          "bold": true,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "text",
+          "name": "Felt 2 navn",
+          "x": 120,
+          "y": 342,
+          "text": "Tur",
+          "size": 20,
+          "bold": true,
+          "color": "#FFFFFF"
+        },
+        {
+          "type": "box",
+          "name": "Vaelg 1",
+          "spil": "ButtonSelectLineEdit",
+          "x": 224,
+          "y": 214,
+          "w": 52,
+          "h": 64,
+          "z": 100
+        },
+        {
+          "type": "box",
+          "name": "Felt 1",
+          "spil": "LineEdit",
+          "x": 286,
+          "y": 214,
+          "w": 336,
+          "h": 64,
+          "z": 100
+        },
+        {
+          "type": "box",
+          "name": "Vaelg 2",
+          "spil": "ButtonSelectTour",
+          "x": 224,
+          "y": 324,
+          "w": 52,
+          "h": 64,
+          "z": 100
+        },
+        {
+          "type": "box",
+          "name": "Felt 2",
+          "spil": "TourEdit",
+          "x": 286,
+          "y": 324,
+          "w": 336,
+          "h": 64,
+          "z": 100
+        },
+        {
+          "type": "box",
+          "name": "OK",
+          "spil": "ButtonOK",
+          "x": 120,
+          "y": 600,
+          "w": 502,
+          "h": 72,
+          "z": 100
+        },
+        {
+          "type": "box",
+          "name": "Numpad",
+          "spil": "Numpad",
+          "x": 676,
+          "y": 124,
+          "w": 492,
+          "h": 552,
+          "z": 100
+        },
+        {
+          "type": "box",
+          "name": "Bundknapper",
+          "spil": "BottomButtons",
+          "x": 0,
+          "y": 700,
+          "w": 1200,
+          "h": 64,
+          "z": 100
+        }
+      ],
+      "regler": [
+        {
+          "saet": "tekst",
+          "element": "Ur",
+          "til": "{KlokkeSek:hh:mm:ss}"
+        },
+        {
+          "saet": "tekst",
+          "element": "Status ur",
+          "til": "{Klokken:hh:mm}"
+        }
+      ],
+      "behold": []
+    },
+    "aendringer": [
+      {
+        "funktion": "farve",
+        "skaerm": "Numpad",
+        "element": "Image_BG",
+        "vaerdi": "#15181D"
+      },
+      {
+        "funktion": "farve",
+        "skaerm": "/Game/UI/Berlin/Menu/Atron/NewAtron/Widgets/UMG_TB_NAtron_Bottom_Row_Buttons",
+        "element": "Image_BG",
+        "vaerdi": "#0F1115"
+      },
+      {
+        "funktion": "farve",
+        "skaerm": "/Game/UI/Berlin/Menu/Atron/NewAtron/Widgets/UMG_TB_NAtron_Bottom_Row_Buttons",
+        "element": "Border_BottomLeftColor",
+        "vaerdi": "#0F1115"
+      }
+    ]
+  }
+]
