@@ -10,7 +10,8 @@ For at ændringen kommer i spillet skal brugeren altid:
 1. køre `movia_kommando.py` i editorens Python-konsol (én linje), og
 2. trykke TML > Mod Creator > Build Mod > Build Client Only.
 Det er KUN nye *slags* funktioner (nye datafelter, nye knaptyper, nye handlinger) der kræver at
-regel-motoren (WBP_MoviaMotor) selv ændres – det kan du ikke via kommando.json. Brug derfor kun de
+regel-motoren (WBP_MoviaMotor) selv ændres – det kan du ikke via kommando.json (det gøres med
+`motorgen.py` + `movia_ny_motor.py`, se nederst). Brug derfor kun de
 datafelter, knaptyper og handlinger der står i denne guide.
 **Rediger den eksisterende kommando.json** (den indeholder alle skærme) – byg ikke forfra, ellers forsvinder
 login, billetmenu, pause osv.
@@ -43,9 +44,10 @@ liste: `[ {"skaerm": "Main", ...}, {"skaerm": "Header", ...} ]`.
 | `Start` | 1200 × 764 | Forskærmen før login (grøn log ind-knap, GPS) |
 | `LogIn` | 1200 × 764 | Custom login (email/adgangskode, tastatur, Gem login) – logger ind i baggrunden |
 | `Tur` | 1200 × 764 | Spillets linje/tur-valg – logger selv ind ("Logger ind…"), manuel skærm som reserve |
+| `Tjeneste` | 1200 × 764 | Spillets "Service Journey" (kørsel hen til turens første stop). Er en kopi af Driving og skal holdes ens med den |
 
-`Main` og `Driving` har samme layout (Atron skifter selv: Main når bussen holder stille, Driving når den kører).
-Ændrer du det ene, så ændr det andet på samme måde.
+`Main`, `Driving` og `Tjeneste` har samme layout (Atron skifter selv: Main når bussen holder stille, Driving når den kører,
+Tjeneste på vej hen til første stop). Ændrer du den ene, så ændr de andre på samme måde.
 
 Alle skærme undtagen StopRaekke og Startup kan bygges med `layout`.
 
@@ -357,7 +359,11 @@ Skrifttype er altid Inter (vælges automatisk).
 }
 ```
 
-## Komplet eksempel (Movia-passagerskærm)
+## Den nyeste passagerskærm (fuld kommando – brug den som udgangspunkt)
+Sådan ser passagerskærmen ud i modden lige nu: reklame til venstre (skifter mellem `Reklame` og `Reklame 2` hver 12. sek),
+"Næste stop" øverst, STOP-boks + linje/zone/ur i venstre kolonne, stoplisten med minutter og linje-mærker, afgangstavle,
+og "Ikke i rute"-lagene (`IkkeIRute …`) der dækker toppen og stoplisten når chaufføren sætter skiltet til "Ikke i rute".
+Ret i denne frem for at bygge en ny – ellers forsvinder minutter, linje-mærker, reklameskift og "Ikke i rute".
 
 ```json
 {
@@ -366,19 +372,284 @@ Skrifttype er altid Inter (vælges automatisk).
     "w": 1600, "h": 430, "bg": "#FFFFFF",
     "items": [
       {"type": "box", "name": "Reklame", "x": 0, "y": 0, "w": 790, "h": 430, "color": "#FFFFFF", "image": "T_Reklame_Aeblefest"},
-      {"type": "box", "name": "Topfelt", "x": 790, "y": 0, "w": 810, "h": 92, "color": "#F3F4F5"},
-      {"type": "text", "name": "Label DK", "x": 806, "y": 22, "text": "Næste stop", "size": 18, "color": "#333333"},
-      {"type": "text", "name": "Label EN", "x": 806, "y": 46, "text": "Next stop", "size": 18, "color": "#8A8F94"},
-      {"type": "text", "name": "Næste stop", "x": 942, "y": 18, "data": "NaesteStop", "size": 40, "color": "#1D1D1D", "bold": true},
-      {"type": "box", "name": "Venstre kolonne", "x": 790, "y": 92, "w": 152, "h": 338, "color": "#F3F4F5"},
-      {"type": "box", "name": "STOP-felt", "x": 790, "y": 93, "w": 152, "h": 136, "color": "#111111", "color_on": "#E2231A", "state": "StopOenske"},
-      {"type": "text", "name": "STOP", "x": 815, "y": 136, "text": "STOP", "size": 36, "color": "#FFFFFF", "bold": true},
-      {"type": "text", "name": "Linje-label", "x": 806, "y": 250, "text": "Linje:", "size": 20, "color": "#333333"},
-      {"type": "text", "name": "Linje", "x": 870, "y": 250, "data": "Linje", "size": 20, "color": "#8A8F94"},
-      {"type": "text", "name": "Zone", "x": 806, "y": 285, "text": "Zone: 2", "size": 20, "color": "#333333"},
-      {"type": "text", "name": "Tid", "x": 806, "y": 320, "data": "Ur", "size": 20, "color": "#333333"},
-      {"type": "box", "name": "Stopliste", "x": 960, "y": 100, "w": 620, "h": 320, "color": "#FFFFFF", "data": "StopListe"}
-    ]
+      {"type": "box", "name": "Højre baggrund", "x": 790, "y": 0, "w": 810, "h": 430, "color": "#FFFFFF"},
+      {"type": "box", "name": "Topfelt", "x": 790, "y": 0, "w": 810, "h": 92, "color": "#FFFFFF"},
+      {"type": "box", "name": "Streg under top", "x": 790, "y": 92, "w": 810, "h": 2, "color": "#DCDFE2"},
+      {"type": "text", "name": "Næste stop label", "x": 822, "y": 20, "text": "Næste stop", "size": 22, "color": "#333333", "bold": true},
+      {"type": "text", "name": "Next stop label", "x": 822, "y": 48, "text": "Next stop", "size": 18, "color": "#8A8F94"},
+      {"type": "text", "name": "Næste stop", "x": 980, "y": 16, "data": "NaesteStop", "size": 33, "color": "#1D1D1D", "bold": true},
+      {"type": "box", "name": "Venstre kolonne", "x": 790, "y": 94, "w": 190, "h": 336, "color": "#FFFFFF"},
+      {"type": "box", "name": "Streg venstre kolonne", "x": 980, "y": 94, "w": 2, "h": 336, "color": "#DCDFE2"},
+      {"type": "box", "name": "Stop it boks", "x": 790, "y": 94, "w": 190, "h": 160, "color": "#1B2A6B"},
+      {"type": "text", "name": "Stop it tekst", "x": 838, "y": 154, "text": "", "size": 30, "color": "#FFFFFF", "bold": true, "hidden": true},
+      {"type": "box", "name": "STOP-felt", "x": 790, "y": 94, "w": 190, "h": 160, "color": "#1B2A6B00", "color_on": "#E2231A", "state": "StopOenske"},
+      {"type": "box", "name": "Streg under STOP", "x": 790, "y": 254, "w": 190, "h": 2, "color": "#DCDFE2"},
+      {"type": "text", "name": "Linje-label", "x": 822, "y": 282, "text": "Linje:", "size": 24, "color": "#1D1D1D", "bold": true},
+      {"type": "text", "name": "Linje", "x": 900, "y": 282, "data": "Linje", "size": 24, "color": "#8A8F94"},
+      {"type": "text", "name": "Zone", "x": 822, "y": 328, "text": "Zone: 2", "size": 24, "color": "#1D1D1D", "bold": true},
+      {"type": "text", "name": "Ur", "x": 822, "y": 374, "data": "Ur", "size": 24, "color": "#1D1D1D", "bold": true},
+      {"type": "box", "name": "Stopliste", "x": 1096, "y": 110, "w": 484, "h": 300, "color": "#FFFFFF", "data": "StopListe"},
+      {"type": "box", "name": "Tidslinje", "x": 1110, "y": 118, "w": 5, "h": 278, "color": "#9AA0A6"},
+      {"type": "text", "name": "Pil", "x": 1098, "y": 384, "text": "▼", "size": 28, "color": "#9AA0A6"},
+      {"type": "text", "name": "Minutter 1", "x": 1008, "y": 110, "text": "2 min", "size": 20, "color": "#6B7075", "bold": false},
+      {"type": "text", "name": "Minutter 2", "x": 1008, "y": 201, "text": "4 min", "size": 20, "color": "#6B7075", "bold": false},
+      {"type": "text", "name": "Minutter 3", "x": 1008, "y": 292, "text": "6 min", "size": 20, "color": "#6B7075", "bold": false},
+      {"type": "box", "name": "Reklame 2", "x": 0, "y": 0, "w": 790, "h": 430, "color": "#FFFFFF", "image": "T_Reklame_Boennebaren", "z": 1},
+      {"type": "box", "name": "Maerke1_1", "x": 1140, "y": 144, "w": 40, "h": 18, "color": "#F5B800", "z": 40, "_ny": true},
+      {"type": "text", "name": "MaerkeTxt1_1", "x": 1140, "y": 145, "w": 40, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 41, "_ny": true},
+      {"type": "box", "name": "Maerke1_2", "x": 1186, "y": 144, "w": 40, "h": 18, "color": "#F5B800", "z": 40, "_ny": true},
+      {"type": "text", "name": "MaerkeTxt1_2", "x": 1186, "y": 145, "w": 40, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 41, "_ny": true},
+      {"type": "box", "name": "Maerke1_3", "x": 1232, "y": 144, "w": 40, "h": 18, "color": "#F5B800", "z": 40, "_ny": true},
+      {"type": "text", "name": "MaerkeTxt1_3", "x": 1232, "y": 145, "w": 40, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 41, "_ny": true},
+      {"type": "box", "name": "Maerke1_4", "x": 1278, "y": 144, "w": 40, "h": 18, "color": "#F5B800", "z": 40, "_ny": true},
+      {"type": "text", "name": "MaerkeTxt1_4", "x": 1278, "y": 145, "w": 40, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 41, "_ny": true},
+      {"type": "box", "name": "Maerke1_5", "x": 1324, "y": 144, "w": 40, "h": 18, "color": "#F5B800", "z": 40, "_ny": true},
+      {"type": "text", "name": "MaerkeTxt1_5", "x": 1324, "y": 145, "w": 40, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 41, "_ny": true},
+      {"type": "box", "name": "Maerke2_1", "x": 1140, "y": 235, "w": 40, "h": 18, "color": "#F5B800", "z": 40, "_ny": true},
+      {"type": "text", "name": "MaerkeTxt2_1", "x": 1140, "y": 236, "w": 40, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 41, "_ny": true},
+      {"type": "box", "name": "Maerke2_2", "x": 1186, "y": 235, "w": 40, "h": 18, "color": "#F5B800", "z": 40, "_ny": true},
+      {"type": "text", "name": "MaerkeTxt2_2", "x": 1186, "y": 236, "w": 40, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 41, "_ny": true},
+      {"type": "box", "name": "Maerke2_3", "x": 1232, "y": 235, "w": 40, "h": 18, "color": "#F5B800", "z": 40, "_ny": true},
+      {"type": "text", "name": "MaerkeTxt2_3", "x": 1232, "y": 236, "w": 40, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 41, "_ny": true},
+      {"type": "box", "name": "Maerke2_4", "x": 1278, "y": 235, "w": 40, "h": 18, "color": "#F5B800", "z": 40, "_ny": true},
+      {"type": "text", "name": "MaerkeTxt2_4", "x": 1278, "y": 236, "w": 40, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 41, "_ny": true},
+      {"type": "box", "name": "Maerke2_5", "x": 1324, "y": 235, "w": 40, "h": 18, "color": "#F5B800", "z": 40, "_ny": true},
+      {"type": "text", "name": "MaerkeTxt2_5", "x": 1324, "y": 236, "w": 40, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 41, "_ny": true},
+      {"type": "box", "name": "Maerke3_1", "x": 1140, "y": 326, "w": 40, "h": 18, "color": "#F5B800", "z": 40, "_ny": true},
+      {"type": "text", "name": "MaerkeTxt3_1", "x": 1140, "y": 327, "w": 40, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 41, "_ny": true},
+      {"type": "box", "name": "Maerke3_2", "x": 1186, "y": 326, "w": 40, "h": 18, "color": "#F5B800", "z": 40, "_ny": true},
+      {"type": "text", "name": "MaerkeTxt3_2", "x": 1186, "y": 327, "w": 40, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 41, "_ny": true},
+      {"type": "box", "name": "Maerke3_3", "x": 1232, "y": 326, "w": 40, "h": 18, "color": "#F5B800", "z": 40, "_ny": true},
+      {"type": "text", "name": "MaerkeTxt3_3", "x": 1232, "y": 327, "w": 40, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 41, "_ny": true},
+      {"type": "box", "name": "Maerke3_4", "x": 1278, "y": 326, "w": 40, "h": 18, "color": "#F5B800", "z": 40, "_ny": true},
+      {"type": "text", "name": "MaerkeTxt3_4", "x": 1278, "y": 327, "w": 40, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 41, "_ny": true},
+      {"type": "box", "name": "Maerke3_5", "x": 1324, "y": 326, "w": 40, "h": 18, "color": "#F5B800", "z": 40, "_ny": true},
+      {"type": "text", "name": "MaerkeTxt3_5", "x": 1324, "y": 327, "w": 40, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 41, "_ny": true},
+      {"type": "box", "name": "Tavle bund", "x": 982, "y": 94, "w": 618, "h": 336, "color": "#FFFFFF", "z": 210, "_ny": true},
+      {"type": "box", "name": "Tavle bus ikon", "x": 1000, "y": 106, "w": 22, "h": 22, "color": "#FFFFFF", "image": "C:\\Users\\tacci\\Documents\\The Bus\\MoviaTools\\Ikoner\\bus_ikon.png", "z": 211, "_ny": true},
+      {"type": "text", "name": "Tavle Bus", "x": 1030, "y": 105, "text": "Bus", "size": 17, "color": "#1D1D1D", "z": 211, "_ny": true},
+      {"type": "text", "name": "Tavle kol Linje", "x": 1000, "y": 134, "text": "Linje", "size": 10, "color": "#8A8F94", "z": 211, "_ny": true},
+      {"type": "text", "name": "Tavle kol Line", "x": 1000, "y": 146, "text": "Line", "size": 10, "color": "#8A8F94", "z": 211, "_ny": true},
+      {"type": "text", "name": "Tavle kol Til", "x": 1046, "y": 134, "text": "Til", "size": 10, "color": "#8A8F94", "z": 211, "_ny": true},
+      {"type": "text", "name": "Tavle kol To", "x": 1046, "y": 146, "text": "To", "size": 10, "color": "#8A8F94", "z": 211, "_ny": true},
+      {"type": "text", "name": "Tavle kol Om min", "x": 1490, "y": 134, "text": "Om min.", "size": 10, "color": "#8A8F94", "z": 211, "align": "hoejre", "w": 90, "h": 14, "_ny": true},
+      {"type": "text", "name": "Tavle kol In min", "x": 1490, "y": 146, "text": "In min.", "size": 10, "color": "#8A8F94", "z": 211, "align": "hoejre", "w": 90, "h": 14, "_ny": true},
+      {"type": "box", "name": "Tavle streg", "x": 1000, "y": 161, "w": 580, "h": 1, "color": "#DCDFE2", "z": 211, "_ny": true},
+      {"type": "box", "name": "Tavle rk1 bund", "x": 1000, "y": 164, "w": 580, "h": 32, "color": "#F2F3F5", "z": 211, "_ny": true},
+      {"type": "box", "name": "Tavle rk1 maerke", "x": 1004, "y": 171, "w": 32, "h": 18, "color": "#F5B800", "z": 212, "_ny": true},
+      {"type": "text", "name": "Tavle rk1 linje", "x": 1004, "y": 172, "w": 32, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 213, "_ny": true},
+      {"type": "text", "name": "Tavle rk1 til", "x": 1046, "y": 170, "w": 420, "h": 22, "text": "", "size": 14, "color": "#1D1D1D", "klip": true, "z": 213, "_ny": true},
+      {"type": "text", "name": "Tavle rk1 min", "x": 1490, "y": 170, "w": 90, "h": 22, "text": "", "size": 14, "color": "#1D1D1D", "align": "hoejre", "z": 213, "_ny": true},
+      {"type": "box", "name": "Tavle rk2 maerke", "x": 1004, "y": 205, "w": 32, "h": 18, "color": "#F5B800", "z": 212, "_ny": true},
+      {"type": "text", "name": "Tavle rk2 linje", "x": 1004, "y": 206, "w": 32, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 213, "_ny": true},
+      {"type": "text", "name": "Tavle rk2 til", "x": 1046, "y": 204, "w": 420, "h": 22, "text": "", "size": 14, "color": "#1D1D1D", "klip": true, "z": 213, "_ny": true},
+      {"type": "text", "name": "Tavle rk2 min", "x": 1490, "y": 204, "w": 90, "h": 22, "text": "", "size": 14, "color": "#1D1D1D", "align": "hoejre", "z": 213, "_ny": true},
+      {"type": "box", "name": "Tavle rk3 bund", "x": 1000, "y": 232, "w": 580, "h": 32, "color": "#F2F3F5", "z": 211, "_ny": true},
+      {"type": "box", "name": "Tavle rk3 maerke", "x": 1004, "y": 239, "w": 32, "h": 18, "color": "#F5B800", "z": 212, "_ny": true},
+      {"type": "text", "name": "Tavle rk3 linje", "x": 1004, "y": 240, "w": 32, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 213, "_ny": true},
+      {"type": "text", "name": "Tavle rk3 til", "x": 1046, "y": 238, "w": 420, "h": 22, "text": "", "size": 14, "color": "#1D1D1D", "klip": true, "z": 213, "_ny": true},
+      {"type": "text", "name": "Tavle rk3 min", "x": 1490, "y": 238, "w": 90, "h": 22, "text": "", "size": 14, "color": "#1D1D1D", "align": "hoejre", "z": 213, "_ny": true},
+      {"type": "box", "name": "Tavle rk4 maerke", "x": 1004, "y": 273, "w": 32, "h": 18, "color": "#F5B800", "z": 212, "_ny": true},
+      {"type": "text", "name": "Tavle rk4 linje", "x": 1004, "y": 274, "w": 32, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 213, "_ny": true},
+      {"type": "text", "name": "Tavle rk4 til", "x": 1046, "y": 272, "w": 420, "h": 22, "text": "", "size": 14, "color": "#1D1D1D", "klip": true, "z": 213, "_ny": true},
+      {"type": "text", "name": "Tavle rk4 min", "x": 1490, "y": 272, "w": 90, "h": 22, "text": "", "size": 14, "color": "#1D1D1D", "align": "hoejre", "z": 213, "_ny": true},
+      {"type": "box", "name": "Tavle rk5 bund", "x": 1000, "y": 300, "w": 580, "h": 32, "color": "#F2F3F5", "z": 211, "_ny": true},
+      {"type": "box", "name": "Tavle rk5 maerke", "x": 1004, "y": 307, "w": 32, "h": 18, "color": "#F5B800", "z": 212, "_ny": true},
+      {"type": "text", "name": "Tavle rk5 linje", "x": 1004, "y": 308, "w": 32, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 213, "_ny": true},
+      {"type": "text", "name": "Tavle rk5 til", "x": 1046, "y": 306, "w": 420, "h": 22, "text": "", "size": 14, "color": "#1D1D1D", "klip": true, "z": 213, "_ny": true},
+      {"type": "text", "name": "Tavle rk5 min", "x": 1490, "y": 306, "w": 90, "h": 22, "text": "", "size": 14, "color": "#1D1D1D", "align": "hoejre", "z": 213, "_ny": true},
+      {"type": "box", "name": "Tavle rk6 maerke", "x": 1004, "y": 341, "w": 32, "h": 18, "color": "#F5B800", "z": 212, "_ny": true},
+      {"type": "text", "name": "Tavle rk6 linje", "x": 1004, "y": 342, "w": 32, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 213, "_ny": true},
+      {"type": "text", "name": "Tavle rk6 til", "x": 1046, "y": 340, "w": 420, "h": 22, "text": "", "size": 14, "color": "#1D1D1D", "klip": true, "z": 213, "_ny": true},
+      {"type": "text", "name": "Tavle rk6 min", "x": 1490, "y": 340, "w": 90, "h": 22, "text": "", "size": 14, "color": "#1D1D1D", "align": "hoejre", "z": 213, "_ny": true},
+      {"type": "box", "name": "Tavle rk7 bund", "x": 1000, "y": 368, "w": 580, "h": 32, "color": "#F2F3F5", "z": 211, "_ny": true},
+      {"type": "box", "name": "Tavle rk7 maerke", "x": 1004, "y": 375, "w": 32, "h": 18, "color": "#F5B800", "z": 212, "_ny": true},
+      {"type": "text", "name": "Tavle rk7 linje", "x": 1004, "y": 376, "w": 32, "h": 16, "text": "", "size": 10, "bold": true, "color": "#1D1D1D", "align": "midt", "z": 213, "_ny": true},
+      {"type": "text", "name": "Tavle rk7 til", "x": 1046, "y": 374, "w": 420, "h": 22, "text": "", "size": 14, "color": "#1D1D1D", "klip": true, "z": 213, "_ny": true},
+      {"type": "text", "name": "Tavle rk7 min", "x": 1490, "y": 374, "w": 90, "h": 22, "text": "", "size": 14, "color": "#1D1D1D", "align": "hoejre", "z": 213, "_ny": true},
+      {"type": "box", "name": "IkkeIRute top", "x": 960, "y": 0, "w": 640, "h": 92, "color": "#FFFFFF", "z": 5000, "opacity": 0},
+      {"type": "text", "name": "IkkeIRute tekst", "x": 980, "y": 16, "text": "Ikke i rute", "size": 33, "bold": true, "color": "#1D1D1D", "z": 5001, "opacity": 0},
+      {"type": "box", "name": "IkkeIRute bund", "x": 982, "y": 94, "w": 618, "h": 336, "color": "#FFFFFF", "z": 5002, "opacity": 0}
+    ],
+    "regler": [
+      {"saet": "tekst", "element": "Minutter 1", "til": "{Forventet1:heltal} min"},
+      {"saet": "tekst", "element": "Minutter 2", "til": "{Forventet2:heltal} min"},
+      {"saet": "tekst", "element": "Minutter 3", "til": "{Forventet3:heltal} min"},
+      {"hvis": "Afstand < 150 eller Forventet1 < 0.5", "saet": "tekst", "element": "Minutter 1", "til": "Nu"},
+      {"hvis": "Linje1_1 != '' og VedStop = 0", "saet": "vis", "element": "Maerke1_1", "_ny": true},
+      {"hvis": "Linje1_1 != '' og VedStop = 0", "saet": "vis", "element": "MaerkeTxt1_1", "_ny": true},
+      {"hvis": "Linje1_1 indeholder 'S'", "saet": "farve", "element": "Maerke1_1", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "Linje1_1 indeholder 'S'", "saet": "tekstfarve", "element": "MaerkeTxt1_1", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "MaerkeTxt1_1", "til": "{Linje1_1}", "_ny": true},
+      {"hvis": "Linje1_2 != '' og VedStop = 0", "saet": "vis", "element": "Maerke1_2", "_ny": true},
+      {"hvis": "Linje1_2 != '' og VedStop = 0", "saet": "vis", "element": "MaerkeTxt1_2", "_ny": true},
+      {"hvis": "Linje1_2 indeholder 'S'", "saet": "farve", "element": "Maerke1_2", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "Linje1_2 indeholder 'S'", "saet": "tekstfarve", "element": "MaerkeTxt1_2", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "MaerkeTxt1_2", "til": "{Linje1_2}", "_ny": true},
+      {"hvis": "Linje1_3 != '' og VedStop = 0", "saet": "vis", "element": "Maerke1_3", "_ny": true},
+      {"hvis": "Linje1_3 != '' og VedStop = 0", "saet": "vis", "element": "MaerkeTxt1_3", "_ny": true},
+      {"hvis": "Linje1_3 indeholder 'S'", "saet": "farve", "element": "Maerke1_3", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "Linje1_3 indeholder 'S'", "saet": "tekstfarve", "element": "MaerkeTxt1_3", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "MaerkeTxt1_3", "til": "{Linje1_3}", "_ny": true},
+      {"hvis": "Linje1_4 != '' og VedStop = 0", "saet": "vis", "element": "Maerke1_4", "_ny": true},
+      {"hvis": "Linje1_4 != '' og VedStop = 0", "saet": "vis", "element": "MaerkeTxt1_4", "_ny": true},
+      {"hvis": "Linje1_4 indeholder 'S'", "saet": "farve", "element": "Maerke1_4", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "Linje1_4 indeholder 'S'", "saet": "tekstfarve", "element": "MaerkeTxt1_4", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "MaerkeTxt1_4", "til": "{Linje1_4}", "_ny": true},
+      {"hvis": "Linje1_5 != '' og VedStop = 0", "saet": "vis", "element": "Maerke1_5", "_ny": true},
+      {"hvis": "Linje1_5 != '' og VedStop = 0", "saet": "vis", "element": "MaerkeTxt1_5", "_ny": true},
+      {"hvis": "Linje1_5 indeholder 'S'", "saet": "farve", "element": "Maerke1_5", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "Linje1_5 indeholder 'S'", "saet": "tekstfarve", "element": "MaerkeTxt1_5", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "MaerkeTxt1_5", "til": "{Linje1_5}", "_ny": true},
+      {"hvis": "Linje2_1 != '' og VedStop = 0", "saet": "vis", "element": "Maerke2_1", "_ny": true},
+      {"hvis": "Linje2_1 != '' og VedStop = 0", "saet": "vis", "element": "MaerkeTxt2_1", "_ny": true},
+      {"hvis": "Linje2_1 indeholder 'S'", "saet": "farve", "element": "Maerke2_1", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "Linje2_1 indeholder 'S'", "saet": "tekstfarve", "element": "MaerkeTxt2_1", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "MaerkeTxt2_1", "til": "{Linje2_1}", "_ny": true},
+      {"hvis": "Linje2_2 != '' og VedStop = 0", "saet": "vis", "element": "Maerke2_2", "_ny": true},
+      {"hvis": "Linje2_2 != '' og VedStop = 0", "saet": "vis", "element": "MaerkeTxt2_2", "_ny": true},
+      {"hvis": "Linje2_2 indeholder 'S'", "saet": "farve", "element": "Maerke2_2", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "Linje2_2 indeholder 'S'", "saet": "tekstfarve", "element": "MaerkeTxt2_2", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "MaerkeTxt2_2", "til": "{Linje2_2}", "_ny": true},
+      {"hvis": "Linje2_3 != '' og VedStop = 0", "saet": "vis", "element": "Maerke2_3", "_ny": true},
+      {"hvis": "Linje2_3 != '' og VedStop = 0", "saet": "vis", "element": "MaerkeTxt2_3", "_ny": true},
+      {"hvis": "Linje2_3 indeholder 'S'", "saet": "farve", "element": "Maerke2_3", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "Linje2_3 indeholder 'S'", "saet": "tekstfarve", "element": "MaerkeTxt2_3", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "MaerkeTxt2_3", "til": "{Linje2_3}", "_ny": true},
+      {"hvis": "Linje2_4 != '' og VedStop = 0", "saet": "vis", "element": "Maerke2_4", "_ny": true},
+      {"hvis": "Linje2_4 != '' og VedStop = 0", "saet": "vis", "element": "MaerkeTxt2_4", "_ny": true},
+      {"hvis": "Linje2_4 indeholder 'S'", "saet": "farve", "element": "Maerke2_4", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "Linje2_4 indeholder 'S'", "saet": "tekstfarve", "element": "MaerkeTxt2_4", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "MaerkeTxt2_4", "til": "{Linje2_4}", "_ny": true},
+      {"hvis": "Linje2_5 != '' og VedStop = 0", "saet": "vis", "element": "Maerke2_5", "_ny": true},
+      {"hvis": "Linje2_5 != '' og VedStop = 0", "saet": "vis", "element": "MaerkeTxt2_5", "_ny": true},
+      {"hvis": "Linje2_5 indeholder 'S'", "saet": "farve", "element": "Maerke2_5", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "Linje2_5 indeholder 'S'", "saet": "tekstfarve", "element": "MaerkeTxt2_5", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "MaerkeTxt2_5", "til": "{Linje2_5}", "_ny": true},
+      {"hvis": "Linje3_1 != '' og VedStop = 0", "saet": "vis", "element": "Maerke3_1", "_ny": true},
+      {"hvis": "Linje3_1 != '' og VedStop = 0", "saet": "vis", "element": "MaerkeTxt3_1", "_ny": true},
+      {"hvis": "Linje3_1 indeholder 'S'", "saet": "farve", "element": "Maerke3_1", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "Linje3_1 indeholder 'S'", "saet": "tekstfarve", "element": "MaerkeTxt3_1", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "MaerkeTxt3_1", "til": "{Linje3_1}", "_ny": true},
+      {"hvis": "Linje3_2 != '' og VedStop = 0", "saet": "vis", "element": "Maerke3_2", "_ny": true},
+      {"hvis": "Linje3_2 != '' og VedStop = 0", "saet": "vis", "element": "MaerkeTxt3_2", "_ny": true},
+      {"hvis": "Linje3_2 indeholder 'S'", "saet": "farve", "element": "Maerke3_2", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "Linje3_2 indeholder 'S'", "saet": "tekstfarve", "element": "MaerkeTxt3_2", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "MaerkeTxt3_2", "til": "{Linje3_2}", "_ny": true},
+      {"hvis": "Linje3_3 != '' og VedStop = 0", "saet": "vis", "element": "Maerke3_3", "_ny": true},
+      {"hvis": "Linje3_3 != '' og VedStop = 0", "saet": "vis", "element": "MaerkeTxt3_3", "_ny": true},
+      {"hvis": "Linje3_3 indeholder 'S'", "saet": "farve", "element": "Maerke3_3", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "Linje3_3 indeholder 'S'", "saet": "tekstfarve", "element": "MaerkeTxt3_3", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "MaerkeTxt3_3", "til": "{Linje3_3}", "_ny": true},
+      {"hvis": "Linje3_4 != '' og VedStop = 0", "saet": "vis", "element": "Maerke3_4", "_ny": true},
+      {"hvis": "Linje3_4 != '' og VedStop = 0", "saet": "vis", "element": "MaerkeTxt3_4", "_ny": true},
+      {"hvis": "Linje3_4 indeholder 'S'", "saet": "farve", "element": "Maerke3_4", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "Linje3_4 indeholder 'S'", "saet": "tekstfarve", "element": "MaerkeTxt3_4", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "MaerkeTxt3_4", "til": "{Linje3_4}", "_ny": true},
+      {"hvis": "Linje3_5 != '' og VedStop = 0", "saet": "vis", "element": "Maerke3_5", "_ny": true},
+      {"hvis": "Linje3_5 != '' og VedStop = 0", "saet": "vis", "element": "MaerkeTxt3_5", "_ny": true},
+      {"hvis": "Linje3_5 indeholder 'S'", "saet": "farve", "element": "Maerke3_5", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "Linje3_5 indeholder 'S'", "saet": "tekstfarve", "element": "MaerkeTxt3_5", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "MaerkeTxt3_5", "til": "{Linje3_5}", "_ny": true},
+      {"hvis": "VedStop = 1", "saet": "vis", "element": "Tavle bund", "_ny": true},
+      {"hvis": "VedStop = 1", "saet": "vis", "element": "Tavle bus ikon", "_ny": true},
+      {"hvis": "VedStop = 1", "saet": "vis", "element": "Tavle Bus", "_ny": true},
+      {"hvis": "VedStop = 1", "saet": "vis", "element": "Tavle kol Linje", "_ny": true},
+      {"hvis": "VedStop = 1", "saet": "vis", "element": "Tavle kol Line", "_ny": true},
+      {"hvis": "VedStop = 1", "saet": "vis", "element": "Tavle kol Til", "_ny": true},
+      {"hvis": "VedStop = 1", "saet": "vis", "element": "Tavle kol To", "_ny": true},
+      {"hvis": "VedStop = 1", "saet": "vis", "element": "Tavle kol Om min", "_ny": true},
+      {"hvis": "VedStop = 1", "saet": "vis", "element": "Tavle kol In min", "_ny": true},
+      {"hvis": "VedStop = 1", "saet": "vis", "element": "Tavle streg", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje1 != ''", "saet": "vis", "element": "Tavle rk1 bund", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje1 != ''", "saet": "vis", "element": "Tavle rk1 maerke", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje1 != ''", "saet": "vis", "element": "Tavle rk1 linje", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje1 != ''", "saet": "vis", "element": "Tavle rk1 til", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje1 != ''", "saet": "vis", "element": "Tavle rk1 min", "_ny": true},
+      {"hvis": "AfgLinje1 indeholder 'S'", "saet": "farve", "element": "Tavle rk1 maerke", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "AfgLinje1 indeholder 'S'", "saet": "tekstfarve", "element": "Tavle rk1 linje", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk1 linje", "til": "{AfgLinje1}", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk1 til", "til": "{AfgTil1}", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk1 min", "til": "{AfgMin1:heltal}", "_ny": true},
+      {"hvis": "AfgMin1 < 1", "saet": "tekst", "element": "Tavle rk1 min", "til": "Nu", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje2 != ''", "saet": "vis", "element": "Tavle rk2 maerke", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje2 != ''", "saet": "vis", "element": "Tavle rk2 linje", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje2 != ''", "saet": "vis", "element": "Tavle rk2 til", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje2 != ''", "saet": "vis", "element": "Tavle rk2 min", "_ny": true},
+      {"hvis": "AfgLinje2 indeholder 'S'", "saet": "farve", "element": "Tavle rk2 maerke", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "AfgLinje2 indeholder 'S'", "saet": "tekstfarve", "element": "Tavle rk2 linje", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk2 linje", "til": "{AfgLinje2}", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk2 til", "til": "{AfgTil2}", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk2 min", "til": "{AfgMin2:heltal}", "_ny": true},
+      {"hvis": "AfgMin2 < 1", "saet": "tekst", "element": "Tavle rk2 min", "til": "Nu", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje3 != ''", "saet": "vis", "element": "Tavle rk3 bund", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje3 != ''", "saet": "vis", "element": "Tavle rk3 maerke", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje3 != ''", "saet": "vis", "element": "Tavle rk3 linje", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje3 != ''", "saet": "vis", "element": "Tavle rk3 til", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje3 != ''", "saet": "vis", "element": "Tavle rk3 min", "_ny": true},
+      {"hvis": "AfgLinje3 indeholder 'S'", "saet": "farve", "element": "Tavle rk3 maerke", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "AfgLinje3 indeholder 'S'", "saet": "tekstfarve", "element": "Tavle rk3 linje", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk3 linje", "til": "{AfgLinje3}", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk3 til", "til": "{AfgTil3}", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk3 min", "til": "{AfgMin3:heltal}", "_ny": true},
+      {"hvis": "AfgMin3 < 1", "saet": "tekst", "element": "Tavle rk3 min", "til": "Nu", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje4 != ''", "saet": "vis", "element": "Tavle rk4 maerke", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje4 != ''", "saet": "vis", "element": "Tavle rk4 linje", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje4 != ''", "saet": "vis", "element": "Tavle rk4 til", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje4 != ''", "saet": "vis", "element": "Tavle rk4 min", "_ny": true},
+      {"hvis": "AfgLinje4 indeholder 'S'", "saet": "farve", "element": "Tavle rk4 maerke", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "AfgLinje4 indeholder 'S'", "saet": "tekstfarve", "element": "Tavle rk4 linje", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk4 linje", "til": "{AfgLinje4}", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk4 til", "til": "{AfgTil4}", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk4 min", "til": "{AfgMin4:heltal}", "_ny": true},
+      {"hvis": "AfgMin4 < 1", "saet": "tekst", "element": "Tavle rk4 min", "til": "Nu", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje5 != ''", "saet": "vis", "element": "Tavle rk5 bund", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje5 != ''", "saet": "vis", "element": "Tavle rk5 maerke", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje5 != ''", "saet": "vis", "element": "Tavle rk5 linje", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje5 != ''", "saet": "vis", "element": "Tavle rk5 til", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje5 != ''", "saet": "vis", "element": "Tavle rk5 min", "_ny": true},
+      {"hvis": "AfgLinje5 indeholder 'S'", "saet": "farve", "element": "Tavle rk5 maerke", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "AfgLinje5 indeholder 'S'", "saet": "tekstfarve", "element": "Tavle rk5 linje", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk5 linje", "til": "{AfgLinje5}", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk5 til", "til": "{AfgTil5}", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk5 min", "til": "{AfgMin5:heltal}", "_ny": true},
+      {"hvis": "AfgMin5 < 1", "saet": "tekst", "element": "Tavle rk5 min", "til": "Nu", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje6 != ''", "saet": "vis", "element": "Tavle rk6 maerke", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje6 != ''", "saet": "vis", "element": "Tavle rk6 linje", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje6 != ''", "saet": "vis", "element": "Tavle rk6 til", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje6 != ''", "saet": "vis", "element": "Tavle rk6 min", "_ny": true},
+      {"hvis": "AfgLinje6 indeholder 'S'", "saet": "farve", "element": "Tavle rk6 maerke", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "AfgLinje6 indeholder 'S'", "saet": "tekstfarve", "element": "Tavle rk6 linje", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk6 linje", "til": "{AfgLinje6}", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk6 til", "til": "{AfgTil6}", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk6 min", "til": "{AfgMin6:heltal}", "_ny": true},
+      {"hvis": "AfgMin6 < 1", "saet": "tekst", "element": "Tavle rk6 min", "til": "Nu", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje7 != ''", "saet": "vis", "element": "Tavle rk7 bund", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje7 != ''", "saet": "vis", "element": "Tavle rk7 maerke", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje7 != ''", "saet": "vis", "element": "Tavle rk7 linje", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje7 != ''", "saet": "vis", "element": "Tavle rk7 til", "_ny": true},
+      {"hvis": "VedStop = 1 og AfgLinje7 != ''", "saet": "vis", "element": "Tavle rk7 min", "_ny": true},
+      {"hvis": "AfgLinje7 indeholder 'S'", "saet": "farve", "element": "Tavle rk7 maerke", "til": "#1E5FD6", "ellers": "#F5B800", "_ny": true},
+      {"hvis": "AfgLinje7 indeholder 'S'", "saet": "tekstfarve", "element": "Tavle rk7 linje", "til": "#FFFFFF", "ellers": "#1D1D1D", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk7 linje", "til": "{AfgLinje7}", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk7 til", "til": "{AfgTil7}", "_ny": true},
+      {"saet": "tekst", "element": "Tavle rk7 min", "til": "{AfgMin7:heltal}", "_ny": true},
+      {"hvis": "AfgMin7 < 1", "saet": "tekst", "element": "Tavle rk7 min", "til": "Nu", "_ny": true},
+      {"hvis": "VedStop = 1", "saet": "skjul", "element": "Stopliste", "_ny": true, "_skjul": true},
+      {"hvis": "VedStop = 1", "saet": "skjul", "element": "Tidslinje", "_ny": true, "_skjul": true},
+      {"hvis": "VedStop = 1", "saet": "skjul", "element": "Pil", "_ny": true, "_skjul": true},
+      {"hvis": "VedStop = 1", "saet": "skjul", "element": "Minutter 1", "_ny": true, "_skjul": true},
+      {"hvis": "VedStop = 1", "saet": "skjul", "element": "Minutter 2", "_ny": true, "_skjul": true},
+      {"hvis": "VedStop = 1", "saet": "skjul", "element": "Minutter 3", "_ny": true, "_skjul": true},
+      {"hvis": "IkkeIRute = 1", "saet": "vis", "element": "IkkeIRute top", "glid": 0.3},
+      {"hvis": "IkkeIRute = 1", "saet": "vis", "element": "IkkeIRute tekst", "glid": 0.3},
+      {"hvis": "IkkeIRute = 1", "saet": "vis", "element": "IkkeIRute bund", "glid": 0.3},
+      {"hvis": "SkiltAktiv = 1", "saet": "tekst", "element": "Linje", "til": "{SkiltLinje}", "_skilt": 1},
+      {"hvis": "IkkeIRute = 1", "saet": "tekst", "element": "Linje", "til": "", "_skilt": 1},
+      {"hvis": "IkkeIRute = 1", "saet": "tekst", "element": "Zone", "til": "Zone:", "ellers": "Zone: 2", "_skilt": 1},
+      {"hvis": "IkkeIRute = 1", "saet": "tekst", "element": "Stop it tekst", "til": "", "_skilt": 1}
+    ],
+    "sider": {"skift_hver": 12, "glid": 0.8, "sider": [["Reklame"], ["Reklame 2"]]}
   }
 }
 ```
@@ -545,3 +816,73 @@ Login-kontoen (email/kode) ligger i regel-motoren og kan ikke ændres i kommando
 - Et `knap`-lag uden en `vis`-regel kan altid trykkes – også når menuen er lukket.
 - Glemt `"opacity": 0` på noget der toner frem → det blinker kort, når skærmen åbnes.
 - Ændret Driving men ikke Main (eller omvendt) → skærmen skifter udseende når bussen stopper.
+
+---------------------------------------------------------------------
+# DEL 3 – skilt og skift rute (bordcomputeren)
+---------------------------------------------------------------------
+
+## Skilt-menuen (lag `Skilt …`, Driving og Main)
+Sidebar-knappen "Skilt" (y 454) åbner en menu hvor chaufføren selv sætter linjenummer og destination på bussens skilt.
+"Ikke i rute" vises også på passagerskærmen (lag `IkkeIRute …`, regel på `IkkeIRute = 1`).
+| datafelt | hvad |
+|---|---|
+| `SkiltAaben` | menuen er åben (mærke MoviaSkilt) |
+| `SkiltAktiv` | eget skilt er sat (1/0) |
+| `IkkeIRute` | skiltet er sat til "Ikke i rute" (1/0) – virker også på passagerskærmen |
+| `SkiltLinje`, `SkiltDestination` | teksten på det egne skilt |
+| `Tekst0`/`Tekst1`, `Ren0`/`Ren1` | felterne linje (0) og destination (1) – `Ren` er uden blinkende markør |
+
+| knap | gør |
+|---|---|
+| `"saetskilt": true` | sætter skiltet ud fra felt 0 og 1 |
+| `"nulstilskilt": true` | skiltet følger ruten igen |
+| `"rutetekst": true` | MIN RUTE: skriver turens linje og endestation i felterne |
+| `"tekstsaet": "Skolebus", "vaerdi": 1` | skriver teksten i felt nr. vaerdi (hurtigvalg; `""` sletter) |
+
+## Skift rute (lag `SR …`, Driving og Main)
+Sidebar-knappen "Rute" (y 542) åbner menuen. Trin 1: vælg tur (fane NÆR DIG = ture forbi nærmeste stoppested de næste 2 timer,
+fane SØG LINJE = alle dagens afgange for linjen). Trin 2: vælg startstop (fx som ekstrabus midt på ruten). START logger ind
+på turen, tildeler kursen til chaufføren (så passagererne vil med) og viser pause-kortet (`SR pause …`) med nedtælling.
+Knap-grupper: `RFane` (0/1), `RTrin` (1 = trin 1, 2 = trin 2), `RValg`/`SValg` (valgt række), `RRul`/`SRul` (rulning).
+| datafelt | hvad |
+|---|---|
+| `SRAaben` | menuen er åben (mærke MoviaRute) |
+| `SRTid1`…`SRTid8`, `SRLinje1`, `SRTil1`, `SROm1`, `SRFindes1`, `SRValgt1` | turlisten: tid, "17 · Kurs 3", "→ destination", "om X min", findes 1/0, valgt 1/0 |
+| `SRStop1Navn`…`SRStop8Navn`, `SRStop1Tid`, `SRStop1Findes`, `SRStop1Valgt`, `SRStop1Maerke` | stoplisten i trin 2 (maerke: "start"/"springes over") |
+| `SRStatus`, `SRAntal`, `SRStopAntal` | statuslinje og antal |
+| `SRTitel`, `SRUnder`, `SRValgtTur`, `SRStartNavn`, `SRStartTid` | tekster om den valgte tur/startstop |
+| `SRNed` | nedtælling til afgang fra startstoppet (tekst `m:ss`, tal = sekunder; >0 = vis pause-kortet) |
+| `SRTekst`, `SRStopNavn` | pause-kortets linje/kurs og startstop |
+
+| knap | gør |
+|---|---|
+| `"rutesoeg": 0` / `1` + `"gruppe": "RFane"` | søg nær dig (0) eller linjen i felt 8 (1) |
+| `"rutetegn": "7"` | skriver i linjefeltet (felt 8). `"<"` sletter, `"C"` rydder |
+| `"raekke": 0, "gruppe": "RValg", "rul": "RRul"` | vælger række 0-5 i listen (stoplisten: `SValg`/`SRul`) |
+| `"rutevaelg": true` | går til trin 2 med den valgte tur |
+| `"rutestart": true` | starter turen fra det valgte stop |
+
+## Lagnavne der allerede er bygget (tilføjelse)
+`Skilt …`, `SR …`, `IkkeIRute …`. Lag med samme forbogstaver bliver slettet og bygget forfra af `byg_skilt.py` / `byg_rute.py`.
+
+---------------------------------------------------------------------
+# AFSLUT ALTID DIT SVAR MED "SÅDAN BYGGER DU DET"
+---------------------------------------------------------------------
+Du (AI'en) skal ALTID slutte dit svar med en kort trin-for-trin vejledning til brugeren, der passer til det du har lavet:
+
+**Når du kun har ændret kommando.json (design, tekster, regler):**
+1. Gem filen som `kommando.json` i `C:\Users\tacci\Documents\The Bus\MoviaTools\` (erstat den gamle).
+2. Åbn The Bus Modding Editor og skriv i Python-konsollen nederst:
+   `exec(open(r"C:\Users\tacci\Documents\The Bus\MoviaTools\movia_kommando.py", encoding="utf-8").read())`
+   – vent til loggen siger "ALT FAERDIGT".
+3. TML → Mod Creator → Build Mod → Build Client Only. Vent ca. 6 minutter.
+4. Start The Bus og test.
+
+**Når motoren også er ændret (ny `_motor_vNN.t3d` fra motorgen.py):**
+1. Læg `_motor_vNN.t3d` (og evt. ændrede .py-filer) i MoviaTools-mappen.
+2. Python-konsollen: `exec(open(r"C:\Users\tacci\Documents\The Bus\MoviaTools\movia_ny_motor.py", encoding="utf-8").read())`
+3. I motor-vinduet: Graph → `+` ved GRAPHS → Enter → klik i grafen → Ctrl+V → Confirm → File → Refresh All Nodes.
+4. Python-konsollen: `movia_faerdig(layout=True)` – den gemmer kun hvis der ingen fejl er.
+5. TML → Mod Creator → Build Mod → Build Client Only, og test i spillet.
+
+Skriv vejledningen på dansk, kort og med de præcise linjer der skal indsættes.
