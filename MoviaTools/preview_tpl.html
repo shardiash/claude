@@ -1,0 +1,546 @@
+<title>Movia Skærm-preview</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: værktøjsskal – skærmen i midten, data/hændelser til højre, log under skærmen */
+:root{
+  --bg:#EEF1F5; --panel:#FFFFFF; --line:#D9DEE6; --ink:#16202E; --muted:#5D6878;
+  --accent:#1E5FD6; --accent-ink:#FFFFFF; --stage:#0E1520; --ok:#2E8B3E; --warn:#C2410C;
+  --chip:#E7ECF4; --font:"Inter",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F141B; --panel:#171E28; --line:#2A3442; --ink:#E4E9F0; --muted:#97A3B4;
+  --accent:#4C86F0; --accent-ink:#0B1220; --stage:#05080D; --ok:#5CC46E; --warn:#F28A4B; --chip:#222C3A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F141B; --panel:#171E28; --line:#2A3442; --ink:#E4E9F0; --muted:#97A3B4;
+  --accent:#4C86F0; --accent-ink:#0B1220; --stage:#05080D; --ok:#5CC46E; --warn:#F28A4B; --chip:#222C3A; color-scheme:dark}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:14px}
+.app{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;padding-block:16px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));max-width:1700px;margin:0 auto}
+@media (max-width:980px){.app{grid-template-columns:minmax(0,1fr)}}
+header.top{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+header.top h1{font-size:18px;font-weight:700;margin:0;letter-spacing:-.01em}
+header.top .sub{color:var(--muted);font-size:13px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto}
+.tabs button,.btn{font:inherit;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;padding:7px 12px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn:hover,.tabs button:hover{border-color:var(--accent)}
+.btn:focus-visible,.tabs button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mainc{display:flex;flex-direction:column;gap:12px;min-width:0}
+.stagewrap{background:var(--stage);border-radius:12px;padding:14px;position:relative}
+.stagebar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;color:#C9D3E0;font-size:12px;margin-bottom:10px}
+.stagebar label{display:flex;align-items:center;gap:6px;cursor:pointer}
+.stagebar .hover{margin-left:auto;font-family:var(--mono);color:#8FA3BF;min-height:1em}
+.fit{position:relative;width:100%;overflow:hidden}
+.screen{position:absolute;left:0;top:0;transform-origin:0 0;overflow:hidden;font-family:"Inter",Arial,sans-serif;box-shadow:0 0 0 1px #000}
+.it{position:absolute;box-sizing:border-box;pointer-events:none}
+.it.t{white-space:nowrap;line-height:1.21}
+.it.t.klip{overflow:hidden;text-overflow:ellipsis}
+.it img{width:100%;height:100%;display:block}
+.knap{position:absolute;pointer-events:auto;cursor:pointer;background:transparent;border:0;padding:0}
+.vis-knapper .knap{outline:1px dashed rgba(255,214,0,.85);background:rgba(255,214,0,.08)}
+.knap:hover{background:rgba(76,134,240,.18)!important;outline:1px solid rgba(76,134,240,.9)}
+.gps{background:#1B2335 repeating-linear-gradient(35deg,transparent 0 38px,rgba(142,156,196,.28) 38px 41px),repeating-linear-gradient(-55deg,transparent 0 70px,rgba(195,204,230,.32) 70px 74px)}
+.gps span{position:absolute;left:12px;bottom:10px;color:#8E9CC4;font:12px var(--mono)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;min-width:0}
+.panel h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 10px;font-weight:600}
+.side{display:flex;flex-direction:column;gap:12px;min-width:0}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:5px 0}
+.row label{min-width:0}
+.row input[type=range]{width:130px}
+.row output{font:12px var(--mono);color:var(--muted);min-width:56px;text-align:right}
+.sw{appearance:none;width:34px;height:20px;border-radius:20px;background:var(--line);position:relative;cursor:pointer;flex:none}
+.sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .15s}
+.sw:checked{background:var(--accent)} .sw:checked::after{left:16px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:12px var(--mono);background:var(--chip);border-radius:6px;padding:3px 7px;cursor:pointer;border:1px solid transparent}
+.chip.on{border-color:var(--accent);color:var(--accent)}
+.vars{max-height:340px;overflow:auto;display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:4px 8px;font-size:12px}
+.vars span{font-family:var(--mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;align-self:center}
+.vars input{font:12px var(--mono);width:100%;box-sizing:border-box;border:1px solid var(--line);border-radius:5px;padding:3px 5px;background:var(--bg);color:var(--ink)}
+.filter{width:100%;box-sizing:border-box;font:inherit;border:1px solid var(--line);border-radius:8px;padding:6px 9px;margin-bottom:8px;background:var(--bg);color:var(--ink)}
+.log{font:12px/1.55 var(--mono);max-height:180px;overflow:auto;color:var(--muted)}
+.log b{color:var(--ink);font-weight:500}
+.note{color:var(--muted);font-size:12px;line-height:1.5}
+@media (prefers-reduced-motion:reduce){.sw::after{transition:none}}
+</style>
+
+<div class="app">
+  <header class="top">
+    <div>
+      <h1>Movia Skærm-preview</h1>
+      <div class="sub" id="sub">Tryk på knapperne i skærmen som i spillet – reglerne kører live.</div>
+    </div>
+    <div class="tabs" id="tabs" role="group" aria-label="Skærm"></div>
+  </header>
+
+  <section class="mainc">
+    <div class="stagewrap">
+      <div class="stagebar">
+        <label><input type="checkbox" id="visKnapper"> Vis trykflader</label>
+        <label><input type="checkbox" id="pause"> Pause uret</label>
+        <label>Ur-tempo <select id="tempo"><option value="1">1×</option><option value="10">10×</option><option value="60">60×</option></select></label>
+        <button class="btn" id="nulstil" style="padding:4px 10px">Nulstil</button>
+        <span class="hover" id="hover"></span>
+      </div>
+      <div class="fit" id="fit"><div class="screen" id="screen"></div></div>
+    </div>
+    <div class="panel">
+      <h2>Hændelser</h2>
+      <div class="log" id="log"></div>
+    </div>
+  </section>
+
+  <aside class="side">
+    <div class="panel">
+      <h2>Situation</h2>
+      <div class="row"><label for="s_stop">Bussen holder ved stop</label><input class="sw" type="checkbox" id="s_stop"></div>
+      <div class="row"><label for="s_oenske">Stop-ønske (STOP lyser)</label><input class="sw" type="checkbox" id="s_oenske"></div>
+      <div class="row"><label for="s_forst">Ved første stop (endestation)</label><input class="sw" type="checkbox" id="s_forst"></div>
+      <div class="row"><label for="s_fors">Forsinkelse</label><input type="range" id="s_fors" min="-300" max="600" step="5" value="16"><output id="o_fors">+0:16</output></div>
+      <div class="row"><label for="s_pause">Sek. til afgang</label><input type="range" id="s_pause" min="0" max="1200" step="10" value="420"><output id="o_pause">7:00</output></div>
+    </div>
+    <div class="panel">
+      <h2>Mærker på bussen</h2>
+      <div class="chips" id="tags"></div>
+      <p class="note">Tryk for at tænde/slukke. Mærkerne husker fx at en menu er åben.</p>
+    </div>
+    <div class="panel">
+      <h2>Datafelter på denne skærm</h2>
+      <input class="filter" id="vfilter" placeholder="Søg felt …" aria-label="Søg datafelt">
+      <div class="vars" id="vars"></div>
+    </div>
+    <div class="panel">
+      <h2>Indlæs kommando.json</h2>
+      <input type="file" id="fil" accept=".json,application/json" aria-label="Vælg kommando.json">
+      <p class="note">Se en ny fil (fx fra en anden AI), før du kører den i Unreal. Den indbyggede er modden som den er nu.</p>
+    </div>
+  </aside>
+</div>
+
+<script>
+const KOMMANDO = __DATA__;
+const IKONER = __ICONS__;
+const BILLEDER = __BILLEDER__;
+</script>
+<script>
+"use strict";
+/* ---------------- grundlag ---------------- */
+let K = KOMMANDO;
+const $ = s => document.querySelector(s);
+const pad2 = n => String(Math.trunc(Math.abs(n))).padStart(2, "0");
+const START_UR = 7*3600 + 30*60;
+let S;                      // tilstand
+let scr = null;             // aktiv skærm {navn, L, prog}
+let sidstLogTid = 0;
+
+function nyTilstand(){
+  return { ur: START_UR, t0: performance.now(), tid: 0, groups:{}, tags:new Set(), tagTxt:{}, tagNum:{}, txt:[],
+           vals: Object.assign({}, STANDARD), rute: {rows:[], stops:[], titel:"", under:"", status:"Tryk NÆR DIG eller søg en linje"} };
+}
+const STANDARD = {
+  LinjeNr:"5C", NaesteStopNavn:"Nørrebro St.", SidsteStopNavn:"Husum Torv", NaesteTid:7*3600+31*60, SidsteTidSek:7*3600+47*60,
+  NaesteAfgang:7*3600+31*60, AktuelAfgang:7*3600+33*60, AfgangTekst:"07:33:00", Afstand:240, AntalStop:22, TurNr:4, StopNr:3,
+  PauseHoldtMin:12, VagtMin:95, LoginTid:6*3600, SolgteBilletter:3, Kvitteringer:1, Printet:0, Alder:30,
+  FoersteNavn:"Husum Torv", FoersteAfgang:7*3600+12*60, NaesteStop:"Nørrebro St.", Linje:"5C", Ur:"07:30",
+  Forventet1:2, Forventet2:5, Forventet3:9,
+};
+["Nørrebro St.","Jagtvej","Ågade","Forum St.","Rådhuspladsen","Hovedbanegården","Vesterbro Torv","Enghave Plads"].forEach((n,i)=>{
+  const r=i+1, t=7*3600+(31+i*3)*60;
+  STANDARD["Stop"+r+"Navn"]=n; STANDARD["Stop"+r+"Tid"]=t; STANDARD["Stop"+r+"Afgang"]=t; STANDARD["Stop"+r+"Findes"]=1;
+  STANDARD["Rute"+r+"Navn"]=n; STANDARD["Rute"+r+"Tid"]=t; STANDARD["Rute"+r+"Afgang"]=t; STANDARD["Rute"+r+"Findes"]=1;
+});
+[["Voksen","Vok",24],["Barn","Barn",12],["Pensionist","Pens",16],["Cykel","Cyk",14],["Hund","Hund",14],["Tillæg","Till",10]].forEach((b,i)=>{
+  STANDARD["Billet"+(i+1)+"Navn"]=b[0]; STANDARD["Billet"+(i+1)+"Kort"]=b[1]; STANDARD["Billet"+(i+1)+"Findes"]=1; });
+[["Enkeltbillet",1],["Kort",1],["Tillæg",1]].forEach((c,i)=>{ STANDARD["Kat"+(i+1)+"Navn"]=c[0]; STANDARD["Kat"+(i+1)+"Findes"]=1; });
+[["7A","Ålholm"],["350S","Ballerup St."],["66","Sundby"],["250S","Buddinge"],["4A","Tingbjerg"],["15E","Gladsaxe"],["S","Køge"]].forEach((a,i)=>{
+  STANDARD["AfgLinje"+(i+1)]=a[0]; STANDARD["AfgTil"+(i+1)]=a[1]; STANDARD["AfgMin"+(i+1)]=2+i*4; });
+for(let r=1;r<=3;r++) for(let m=1;m<=5;m++) STANDARD["Linje"+r+"_"+m] = m<=r ? ["7A","350S","66"][m-1] : "";
+
+/* ---------------- billeder ---------------- */
+function billede(navn){
+  if(!navn) return null;
+  const f = String(navn).split(/[\\/]/).pop();
+  const n = f.toLowerCase().replace(/^t_/,"");
+  return IKONER[f] || BILLEDER[f] || BILLEDER[n] || BILLEDER[n+".png"] || null;
+}
+
+/* ---------------- udtryk (samme sprog som movia_regler) ---------------- */
+const RESERVED = new Set(["true","false","Math"]);
+function tilJS(tekst){
+  let t = " " + String(tekst) + " ";
+  t = t.replace(/\s+og\s+/gi," && ").replace(/\s+eller\s+/gi," || ").replace(/(^|[\s(])ikke\s+/gi,"$1!");
+  t = t.replace(/≥/g,">=").replace(/≤/g,"<=").replace(/≠/g,"!=");
+  // A indeholder "x" -> String(A).includes("x")
+  t = t.replace(/([A-Za-zÆØÅæøå_][\wÆØÅæøå]*)\s+indeholder\s+('[^']*'|"[^"]*")/gi, (m,a,b)=>`String(V("${a}")).includes(${b})`);
+  let ud = "", i = 0;
+  while(i < t.length){
+    const c = t[i];
+    if(c==="'"||c==='"'){ const j=t.indexOf(c,i+1); ud += JSON.stringify(t.slice(i+1,j)); i=j+1; continue; }
+    if(/[A-Za-zÆØÅæøå_]/.test(c)){ let j=i; while(j<t.length && /[\wÆØÅæøå]/.test(t[j])) j++; const w=t.slice(i,j);
+      if(t.slice(i-3,i)==='V("' || RESERVED.has(w) || w==="String"||w==="includes") ud+=w; else ud += `V("${w}")`; i=j; continue; }
+    if(c==="=" && t[i+1]!=="=" && !"<>!=".includes(t[i-1])){ ud += "=="; i++; continue; }
+    ud += c; i++;
+  }
+  return ud;
+}
+function kompilerUdtryk(tekst){
+  try { return new Function("V", "return (" + tilJS(tekst) + ");"); }
+  catch(e){ return null; }
+}
+function fmt(v, f){
+  const n = Number(v);
+  switch(f){
+    case "heltal": return String(Math.round(n));
+    case "1dec": return (Math.round(n*10)/10).toString().replace(".",",");
+    case "fortegn": return (n>=0.5?"+":"") + Math.round(n);
+    case "mmss": case "hhmm": { const T=Math.abs(Math.round(n)); return (n<-0.5?"-":"")+pad2(T/60)+":"+pad2(T%60); }
+    case "msek": { const T=Math.abs(Math.round(n)); return (n>0.5?"+":n<-0.5?"-":"")+Math.trunc(T/60)+":"+pad2(T%60); }
+    case "hhmmss": { const T=Math.round(n); return pad2(T/3600%24)+":"+pad2(T/60%60)+":"+pad2(T%60); }
+    default: return (typeof v === "number") ? (Number.isInteger(v)?String(v):String(Math.round(v*100)/100)) : String(v ?? "");
+  }
+}
+function kompilerTekst(til){
+  const s = String(til ?? "");
+  const m = s.match(/\{([^{}]*)\}/);
+  if(!m) return () => s;
+  const pre = s.slice(0, m.index), suf = s.slice(m.index + m[0].length);
+  let ind = m[1].replace(/\s/g,""), f = "";
+  const saer = ["hh:mm:ss","mm:ss","hh:mm","m:ss"].find(x => ind.endsWith(":"+x));
+  if(saer){ f = {"hh:mm:ss":"hhmmss","mm:ss":"mmss","hh:mm":"hhmm","m:ss":"msek"}[saer]; ind = ind.slice(0, -(saer.length+1)); }
+  else if(ind.includes(":")){ [ind, f] = [ind.slice(0, ind.lastIndexOf(":")), ind.slice(ind.lastIndexOf(":")+1)];
+    f = {".0f":"heltal","d":"heltal",".1f":"1dec","+.0f":"fortegn","+d":"fortegn"}[f] || f; }
+  const fn = kompilerUdtryk(ind);
+  const enkelt = /^[A-Za-zÆØÅæøå_][\wÆØÅæøå]*$/.test(ind);
+  return () => { let v; try { v = fn ? fn(V) : ""; } catch(e){ v = ""; }
+    if(!f && !enkelt) f = "heltal";
+    if(!f && enkelt) return pre + VS(ind, v) + suf;
+    return pre + fmt(v, f) + suf; };
+}
+
+/* ---------------- data ---------------- */
+const TAGFELT = {SkiltAaben:"MoviaSkilt",SkiltAktiv:"SKA",IkkeIRute:"SKI",ListeAaben:"MoviaListe",BilletAaben:"MoviaBillet",
+  NatAaben:"MoviaNat",LogudAaben:"MoviaLogud",Bekraeftet:"MoviaOK",SRAaben:"MoviaRute"};
+const TAGTEKST = {SkiltLinje:"SKL:",SkiltDestination:"SKD:",SRTekst:"MRT:",SRStopNavn:"MRS:"};
+const KENDTE_TAGS = ["MoviaSkilt","MoviaRute","MoviaListe","MoviaBillet","MoviaNat","MoviaLogud","MoviaOK","SKA","SKI"];
+function g(n){ return Number(S.groups[n] || 0); }
+function hhmm(sek){ const s=Math.floor(sek); return pad2(s/3600%24)+":"+pad2(s/60%60); }
+function dsek(sek){ let r = sek - S.ur; if(r>=43200) r-=86400; if(r<-43200) r+=86400; return r; }
+function V(navn){
+  const grp = scr && scr.grupper;
+  if(grp && grp.has(navn)) return g(navn);
+  let m = navn.match(/^(Tekst|Maske|Ren)(\d)$/);
+  if(m){ const t = S.txt[+m[2]] || "";
+    if(m[1]==="Maske") return "•".repeat(t.length) + (aktivFelt(+m[2]) ? caret() : "");
+    if(m[1]==="Tekst") return t + (aktivFelt(+m[2]) ? caret() : "");
+    return t; }
+  if(navn in TAGFELT) return S.tags.has(TAGFELT[navn]) ? 1 : 0;
+  if(navn in TAGTEKST) return S.tagTxt[TAGTEKST[navn]] || "";
+  switch(navn){
+    case "Tid": return S.tid;
+    case "Klokken": return Math.floor(S.ur/60);
+    case "KlokkeSek": return Math.floor(S.ur);
+    case "Ur": return hhmm(S.ur);
+    case "LoginOK": return (S.txt[0]||"").includes("@") && (S.txt[1]||"").length>=4 ? 1 : 0;
+    case "HolderVedStop": case "VedStop": return $("#s_stop").checked ? 1 : 0;
+    case "ErFoersteStop": return $("#s_forst").checked ? 1 : 0;
+    case "Forsinkelse": return Number($("#s_fors").value);
+    case "PauseSek": return $("#s_pause").checked === undefined ? 0 : Number($("#s_pause").value);
+    case "@StopOenske": return $("#s_oenske").checked ? 1 : 0;
+    case "SRNed": { if(!("MR_" in S.tagNum)) return -1; return dsek(S.tagNum["MR_"]); }
+  }
+  if(navn.startsWith("SR")) return ruteFelt(navn);
+  return (navn in S.vals) ? S.vals[navn] : 0;
+}
+// tekst-udgaven af et felt (motoren har både tal og tekst pr. felt)
+function VS(navn, v){
+  if(navn==="SRNed"){ const d=Math.max(0,Math.floor(v)); return d>=3600 ? Math.floor(d/3600)+":"+pad2(d/60%60)+":"+pad2(d%60) : Math.floor(d/60)+":"+pad2(d%60); }
+  return fmt(v, "");
+}
+function aktivFelt(n){ const f = scr && scr.grupper.has("Felt") ? g("Felt") : 0; return f === n; }
+function caret(){ return (Math.floor(S.tid*2)%2===0) ? "|" : " "; }
+
+/* ---------------- skift rute (simulering) ---------------- */
+const LINJER = {"17":["Karlshöhe","Wandsbek Markt","Eilbektal","Hamburger Straße","U Mundsburg","Lübecker Straße","Berliner Tor","Hauptbahnhof","U Feldstraße"],
+  "277":["U S Barmbek","Habichtstraße","Ruwoldtweg","Karlshöhe","Bramfeld","Steilshoop"],
+  "7":["Borchertring","Dehnhaide","U Hamburger Straße","Mundsburg","Hauptbahnhof"]};
+function ruteSoeg(mode){
+  const nu = S.ur, rows = [];
+  const lin = mode===1 ? String(S.txt[8]||"").trim() : null;
+  if(mode===1 && !lin){ S.rute.status="Skriv et linjenummer"; S.rute.rows=[]; return; }
+  const linjer = mode===1 ? [lin] : ["17","277","7"];
+  linjer.forEach((l,li)=>{
+    const stops = LINJER[l] || ["Start","Midt","Slut"];
+    for(let k=0;k<(mode===1?14:4);k++){
+      const t = nu + 300 + li*240 + k*(mode===1?1200:1500);
+      const ret = k%2===1;
+      const s = ret ? stops.slice().reverse() : stops;
+      rows.push({tid:t, linje:l, kurs:pad2(1+((k*3+li*5)%24)), til:s[s.length-1], stops:s});
+    }
+  });
+  rows.sort((a,b)=>a.tid-b.tid);
+  S.rute.rows = rows; S.groups.RValg=0; S.groups.RRul=0;
+  S.rute.status = mode===1 ? "AFGANGE I DAG · LINJE "+lin : "AFGANGE NÆR DIG · Ruwoldtweg (5 m)";
+  logH("Søgte "+(mode===1?"linje "+lin:"nær dig")+" → "+rows.length+" afgange");
+}
+function ruteFelt(navn){
+  const R = S.rute;
+  let m = navn.match(/^SR(Tid|Linje|Til|Om|Findes|Valgt)(\d)$/);
+  if(m){ const q = +m[2]-1 + g("RRul"), r = R.rows[q]; if(!r) return m[1]==="Findes"||m[1]==="Valgt"?0:"";
+    switch(m[1]){ case "Tid": return hhmm(r.tid); case "Linje": return r.linje+" · Kurs "+r.kurs; case "Til": return "→ "+r.til;
+      case "Om": { const mi=Math.round(dsek(r.tid)/60); return mi<=0?"nu":"om "+mi+" min"; } case "Findes": return 1; case "Valgt": return q===g("RValg")?1:0; } }
+  m = navn.match(/^SRStop(\d)(Navn|Tid|Findes|Valgt|Maerke)$/);
+  if(m){ const q = +m[1]-1 + g("SRul"), s = R.stops[q]; if(!s) return m[2]==="Findes"||m[2]==="Valgt"?0:"";
+    switch(m[2]){ case "Navn": return s.navn; case "Tid": return hhmm(s.tid); case "Findes": return 1; case "Valgt": return q===g("SValg")?1:0;
+      case "Maerke": return q===0?"start":(q<g("SValg")?"springes over":""); } }
+  switch(navn){
+    case "SRStatus": return R.status; case "SRAntal": return R.rows.length; case "SRStopAntal": return R.stops.length;
+    case "SRTitel": return R.titel; case "SRUnder": return R.under;
+    case "SRValgtTur": { const r=R.rows[g("RValg")]; return r? hhmm(r.tid)+" · "+r.linje+" · Kurs "+r.kurs : ""; }
+    case "SRStartTid": { const s=R.stops[g("SValg")]; return s? hhmm(s.tid):""; }
+    case "SRStartNavn": { const s=R.stops[g("SValg")]; return s? s.navn:""; }
+  }
+  return 0;
+}
+function ruteVaelg(){
+  const R=S.rute, r=R.rows[g("RValg")];
+  if(!r){ R.status="Vælg en tur i listen først"; return; }
+  R.stops = r.stops.map((n,i)=>({navn:n, tid:r.tid + i*240}));
+  R.titel = "Linje "+r.linje+" · Kurs "+r.kurs;
+  R.under = R.stops[0].navn+" "+hhmm(R.stops[0].tid)+" → "+R.stops.at(-1).navn+" "+hhmm(R.stops.at(-1).tid);
+  S.groups.SValg=0; S.groups.SRul=0; S.groups.RTrin=2;
+  logH("Valgte tur "+R.titel+" → trin 2");
+}
+function ruteStart(){
+  const R=S.rute, s=R.stops[g("SValg")];
+  if(!s) return;
+  S.tagNum["MR_"]=s.tid; S.tagTxt["MRS:"]=s.navn; S.tagTxt["MRT:"]=R.titel;
+  S.tags.delete("MoviaRute"); S.groups.RTrin=0;
+  S.vals.LinjeNr = R.titel.split(" ")[1]; S.vals.NaesteStopNavn = s.navn; S.vals.SidsteStopNavn = R.stops.at(-1).navn;
+  logH("START: logget ind på "+R.titel+" fra "+s.navn+" kl. "+hhmm(s.tid)+" (pause-kort vises)");
+}
+
+/* ---------------- knapper (som MKnap i motoren) ---------------- */
+function knapGruppe(d){ return d.skifter||d.trin||d.felt||d.login||d.taeller||d.gruppe||null; }
+function tryk(d){
+  const gr = knapGruppe(d);
+  const has = k => d[k] !== undefined && d[k] !== null && d[k] !== false;
+  const sett = (n,v) => { if(n) S.groups[n]=v; };
+  const navnTxt = d.name.replace(/ tryk$/,"");
+  if(has("tekstsaet")){ S.txt[Number(d.vaerdi??1)] = d.tekstsaet; logH(navnTxt+": felt "+(d.vaerdi??1)+" = \""+d.tekstsaet+"\""); }
+  else if(d.saetskilt){ const l=(S.txt[0]||"").trim(), de=(S.txt[1]||"").trim(); S.tagTxt["SKL:"]=l; S.tagTxt["SKD:"]=de; S.tags.add("SKA");
+    if(/^ikke i rout?e$/i.test(de)) S.tags.add("SKI"); else S.tags.delete("SKI"); logH("Skilt sat: "+l+" "+de); }
+  else if(d.nulstilskilt){ delete S.tagTxt["SKL:"]; delete S.tagTxt["SKD:"]; S.tags.delete("SKA"); S.tags.delete("SKI"); logH("Skiltet følger ruten igen"); }
+  else if(d.rutetekst){ S.txt[0]=String(V("LinjeNr")); S.txt[1]=String(V("SidsteStopNavn")); logH("MIN RUTE → felterne udfyldt"); }
+  else if(has("raekke")){ sett(gr, Number(d.raekke) + g(d.rul)); logH(navnTxt+" valgt"); }
+  else if(has("rutesoeg")){ sett(gr, Number(d.vaerdi ?? d.rutesoeg)); ruteSoeg(Number(d.rutesoeg)); }
+  else if(d.rutevaelg) ruteVaelg();
+  else if(d.rutestart) ruteStart();
+  else if(has("rutetegn")){ const t=String(S.txt[8]||""), c=String(d.rutetegn);
+    S.txt[8] = c==="<" ? t.slice(0,-1) : c==="C" ? "" : (t.length<4 ? t+c : t); }
+  else if(has("tegn")){ const p=g(d.felt); let c=String(d.tegn); if(d.store && g(d.store)>=1) c=c.toUpperCase();
+    const t=S.txt[p]||""; if(t.length<40) S.txt[p]=t+c; if(d.nulstil) S.groups[d.nulstil]=0; }
+  else if(d.slet){ const p=g(d.felt); S.txt[p]=(S.txt[p]||"").slice(0,-1); }
+  else if(d.ryd){ S.txt[g(d.felt)]=""; }
+  else if(d.login){ const ok=V("LoginOK")===1; sett(gr, ok?2:1); logH("Log ind: "+(ok?"godkendt":"forkert email/kode")); }
+  else if(has("tilfoejtag")){ S.tags.add(d.tilfoejtag); sett(gr,1); logH("Mærke sat: "+d.tilfoejtag); }
+  else if(has("skiftertag")){ const tg=d.skiftertag; S.tags.has(tg)?S.tags.delete(tg):S.tags.add(tg); logH((S.tags.has(tg)?"Åbnede ":"Lukkede ")+tg.replace("Movia","")); }
+  else if(d.print){ sett(gr, g(gr)+1); S.vals.SolgteBilletter=(+S.vals.SolgteBilletter||0)+1; logH("Billet printet ("+d.print.replace("UMG_TB_NAtron_","")+")"); }
+  else if(d.kategori){ sett(gr, Number(d.vaerdi??1)); logH("Billetkategori "+d.vaerdi); }
+  else if(d.kvittering){ S.vals.Kvitteringer=(+S.vals.Kvitteringer||0)+1; logH("Kvittering printet"); }
+  else if(d.logud){ logH("Afslut vagt (spillets End Shift)"); }
+  else if(d.skifter){ sett(gr, 1 - Math.min(1, g(gr))); logH(gr+" = "+g(gr)); }
+  else { const v = Math.min(Number(d.max??999), Math.max(Number(d.min??-999), g(gr) + Number(d.vaerdi??1))); sett(gr, v); }
+  opdater(true);
+}
+
+/* ---------------- skærm ---------------- */
+function knapGrupper(L){
+  const s = new Set();
+  (L.items||[]).forEach(d => { if(d.type==="knap") ["skifter","trin","felt","login","nulstil","store","taeller","gruppe"].forEach(k=>{ if(d[k]) s.add(d[k]); }); });
+  return s;
+}
+function bygProgram(L){
+  const regler = [];
+  const vis = (r) => r;
+  (L.regler||[]).forEach(r => {
+    const cond = r.hvis ? kompilerUdtryk(r.hvis) : null;
+    if(r.hvis && !cond) return;
+    regler.push({r, cond, betinget: !!r.hvis, ellers: "ellers" in r, tekst: r.saet==="tekst" ? kompilerTekst(r.til) : null});
+  });
+  const sd = L.sider;
+  if(sd && sd.sider && sd.sider.length>1){
+    const T = Number(sd.skift_hver||10), n = sd.sider.length;
+    sd.sider.forEach((side,i) => side.forEach(el => regler.push({r:{saet:"side",element:el,glid:sd.glid}, cond:()=>{ const p=S.tid%(T*n); return p>=T*i && p<T*(i+1); }, betinget:true, ellers:true})));
+  }
+  return regler;
+}
+function vaelgSkaerm(navn){
+  const e = K.find(x => x.skaerm===navn && x.layout);
+  if(!e) return;
+  const L = e.layout;
+  scr = {navn, L, grupper: knapGrupper(L), prog: bygProgram(L), el:{}, st:{}};
+  const root = $("#screen");
+  root.innerHTML = "";
+  root.style.width = (L.w||1200)+"px"; root.style.height = (L.h||764)+"px"; root.style.background = L.bg || "#000";
+  const items = (L.items||[]).map((d,i)=>({d, z: d.z ?? i, i})).sort((a,b)=>a.z-b.z || a.i-b.i);
+  items.forEach(({d,z}) => {
+    if(d.spil || d.ring) return;   // ring = 3D-ring motoren lægger om næste stop på kortet
+    let el;
+    if(d.type==="knap"){ el = document.createElement("button"); el.className="knap"; el.type="button"; el.setAttribute("aria-label", d.name);
+      el.addEventListener("click", ()=>tryk(d)); el.addEventListener("mouseenter", ()=>{$("#hover").textContent=d.name;}); }
+    else { el = document.createElement("div"); el.className = "it" + (d.type==="text"?" t":"") + (d.klip?" klip":""); }
+    Object.assign(el.style, {left:(d.x||0)+"px", top:(d.y||0)+"px", zIndex: z});
+    if(d.w) el.style.width = d.w+"px"; if(d.h && d.type!=="text") el.style.height = d.h+"px";
+    if(d.type==="text"){ el.style.fontSize = (Number(d.size||12)*4/3)+"px"; el.style.fontWeight = d.bold?700:400;
+      if(d.h) el.style.height = d.h+"px"; if(d.align==="midt") el.style.textAlign="center"; if(d.align==="hoejre") el.style.textAlign="right"; }
+    if(d.type==="gps"){ el.classList.add("gps"); el.innerHTML = "<span>GPS-kort (spillets kort)</span>"; }
+    root.appendChild(el);
+    scr.el[d.name] = el;
+    scr.st[d.name] = { d, vis: !d.hidden, op: d.opacity==null ? 1 : Number(d.opacity), farve: d.color, tfarve: d.color,
+                       tekst: d.data ? null : (d.text ?? ""), billede: d.image || null, dx:0, dy:0 };
+  });
+  document.querySelectorAll("#tabs button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.s===navn)));
+  try { localStorage.setItem("movia_preview_skaerm", navn); } catch(e){}
+  tilpas(); visVars(); opdater(true);
+}
+function anvend(){
+  for(const x of scr.prog){
+    const st = scr.st[x.r.element]; if(!st) continue;
+    let ok = true;
+    if(x.cond){ try { ok = !!x.cond(V); } catch(e){ ok = false; } }
+    const r = x.r;
+    switch(r.saet){
+      case "farve": if(ok) st.farve = r.til; else if(x.ellers) st.farve = r.ellers; break;
+      case "tekstfarve": if(ok) st.tfarve = r.til; else if(x.ellers) st.tfarve = r.ellers; break;
+      case "tekst": if(ok) st.tekst = x.tekst(); else if(x.ellers) st.tekst = String(r.ellers); break;
+      case "vis": if(r.glid>0){ st.op = ok?1:0; if(ok) st.vis=true; } else if(ok) { st.vis=true; if(st.op===0) st.op=1; } else if(x.betinget) st.vis=false; break;
+      case "skjul": if(r.glid>0){ st.op = ok?0:1; } else if(ok) st.vis=false; else if(x.betinget) st.vis=true; break;
+      case "side": st.op = ok?1:0; break;
+      case "opacity": if(ok) st.op = Number(r.til ?? 1); else if(x.ellers) st.op = Number(r.ellers ?? 1); break;
+      case "blink": { const p=Number(r.periode||1); st.op = (ok && (S.tid%p) < p/2) ? Number(r.min||0) : 1; break; }
+      case "billede": if(ok) st.billede = r.til; else if(x.ellers) st.billede = r.ellers; break;
+      case "flytx": st.dx = ok ? Number(r.til||0) : (x.ellers? Number(r.ellers||0) : st.dx); break;
+      case "flyty": st.dy = ok ? Number(r.til||0) : (x.ellers? Number(r.ellers||0) : st.dy); break;
+      case "tilfoejtag": if(ok && r.til && !S.tags.has(r.til)){ S.tags.add(r.til); logH("Regel satte mærket "+r.til); } break;
+      case "fjerntag": if(ok && r.til && S.tags.has(r.til)){ S.tags.delete(r.til); logH("Regel fjernede mærket "+r.til); } break;
+    }
+  }
+}
+function tegn(){
+  for(const navn in scr.st){
+    const st = scr.st[navn], el = scr.el[navn], d = st.d;
+    const synlig = st.vis && st.op > 0.01;
+    el.style.display = synlig ? "" : "none";
+    if(!synlig) continue;
+    el.style.opacity = d.type==="knap" ? "" : String(st.op);
+    if(st.dx||st.dy) el.style.transform = `translate(${st.dx}px,${st.dy}px)`;
+    if(d.type==="text"){
+      const t = d.data ? VS(d.data, V(d.data)) : st.tekst;
+      if(el.textContent !== t) el.textContent = t;
+      el.style.color = st.tfarve || "#fff";
+    } else if(d.type==="box"){
+      const src = billede(st.billede);
+      if(src){ if(el.dataset.src !== src){ el.innerHTML = `<img alt="" src="${src}">`; el.dataset.src = src; } el.style.background = "transparent"; }
+      else if(st.billede){ el.style.background = "repeating-linear-gradient(45deg,#e8ecf1 0 14px,#dfe4ea 14px 28px)";
+        if(!el.dataset.ph){ el.dataset.ph=1; el.innerHTML = `<div style="position:absolute;inset:0;display:grid;place-items:center;color:#6b7480;font:600 22px Inter">${String(st.billede).split(/[\\/]/).pop()}</div>`; } }
+      else {
+        let c = st.farve || "#000";
+        if(d.state && d.color_on && V("@"+d.state)) c = d.color_on;
+        el.style.background = c;
+        if(d.data==="StopListe" && !el.dataset.ph){ el.dataset.ph=1; el.title='Spillets stopliste (tegnes af spillet)'; }
+      }
+    }
+  }
+}
+let skala = 1;
+function tilpas(){
+  if(!scr) return;
+  const fit = $("#fit"), w = scr.L.w||1200, h = scr.L.h||764;
+  skala = fit.clientWidth / w;
+  $("#screen").style.transform = `scale(${skala})`;
+  fit.style.height = (h*skala)+"px";
+}
+function opdater(nu){ if(!scr) return; anvend(); tegn(); visTags(); if(nu) visVarsVaerdier(); }
+
+/* ---------------- paneler ---------------- */
+function logH(t){
+  const el = $("#log"); const d = document.createElement("div");
+  d.innerHTML = `<b>${hhmm(S.ur)}</b>  ${t.replace(/</g,"&lt;")}`;
+  el.prepend(d); while(el.children.length>60) el.lastChild.remove();
+}
+function visTags(){
+  const box = $("#tags"); const alle = new Set([...KENDTE_TAGS, ...S.tags]);
+  const html = [...alle].map(t => `<button type="button" class="chip${S.tags.has(t)?" on":""}" data-t="${t}">${t}</button>`).join("")
+    + Object.entries(S.tagTxt).map(([k,v])=>`<span class="chip on">${k}${v}</span>`).join("")
+    + Object.entries(S.tagNum).map(([k,v])=>`<span class="chip on">${k}${hhmm(v)}</span>`).join("");
+  if(box.dataset.h !== html){ box.innerHTML = html; box.dataset.h = html; }
+}
+$("#tags").addEventListener("click", e => { const t = e.target.dataset && e.target.dataset.t; if(!t) return;
+  S.tags.has(t)?S.tags.delete(t):S.tags.add(t); logH("Mærke "+t+(S.tags.has(t)?" tændt":" slukket")); opdater(true); });
+let varNavne = [];
+function visVars(){
+  const navne = new Set();
+  (scr.L.regler||[]).forEach(r => ["hvis","til","ellers"].forEach(f => { const v=r[f]; if(typeof v!=="string") return;
+    const kilde = f==="hvis" ? v.replace(/'[^']*'|"[^"]*"/g,"") : (v.match(/\{([^}]*)\}/)||["",""])[1].split(":")[0];
+    (kilde.match(/[A-Za-zÆØÅæøå_][\wÆØÅæøå]*/g)||[]).forEach(w => { if(!/^(og|eller|ikke|indeholder|heltal)$/i.test(w)) navne.add(w); }); }));
+  (scr.L.items||[]).forEach(d => { if(d.data) navne.add(d.data); });
+  varNavne = [...navne].sort((a,b)=>a.localeCompare(b,"da"));
+  const box = $("#vars"); box.innerHTML = "";
+  varNavne.forEach(n => {
+    const s = document.createElement("span"); s.textContent = n; s.title = n;
+    const inp = document.createElement("input"); inp.id = "v_"+n; inp.dataset.n = n; inp.setAttribute("aria-label", n);
+    inp.addEventListener("change", () => { const raw = inp.value; const num = Number(raw.replace(",","."));
+      const val = raw.trim()!=="" && !isNaN(num) ? num : raw;
+      if(scr.grupper.has(n)) S.groups[n] = Number(val)||0; else S.vals[n] = val; logH(n+" = "+raw); opdater(true); });
+    box.append(s, inp);
+  });
+  filtrerVars();
+}
+function visVarsVaerdier(){
+  varNavne.forEach(n => { const inp = document.getElementById("v_"+n); if(!inp || inp===document.activeElement) return;
+    let v; try { v = V(n); } catch(e){ v = ""; } inp.value = String(v); });
+}
+function filtrerVars(){
+  const q = $("#vfilter").value.trim().toLowerCase();
+  const kids = $("#vars").children;
+  for(let i=0;i<kids.length;i+=2){ const vis = !q || kids[i].textContent.toLowerCase().includes(q); kids[i].hidden = !vis; kids[i+1].hidden = !vis; }
+}
+$("#vfilter").addEventListener("input", filtrerVars);
+
+/* ---------------- opstart ---------------- */
+function bygFaner(){
+  const tabs = $("#tabs"); tabs.innerHTML = "";
+  K.filter(e => e.layout && e.skaerm!=="Tjeneste").forEach(e => {
+    const b = document.createElement("button"); b.type="button"; b.textContent = e.skaerm; b.dataset.s = e.skaerm;
+    b.addEventListener("click", () => vaelgSkaerm(e.skaerm)); tabs.appendChild(b); });
+}
+function nulstil(){ S = nyTilstand(); $("#log").innerHTML = ""; logH("Preview startet – klokken er sat til 07:30"); }
+$("#nulstil").addEventListener("click", () => { nulstil(); vaelgSkaerm(scr.navn); });
+$("#visKnapper").addEventListener("change", e => $("#screen").classList.toggle("vis-knapper", e.target.checked));
+["s_stop","s_oenske","s_forst"].forEach(id => $("#"+id).addEventListener("change", e => { logH(e.target.parentElement.querySelector("label").textContent+(e.target.checked?": ja":": nej")); opdater(true); }));
+$("#s_fors").addEventListener("input", e => { $("#o_fors").textContent = fmt(Number(e.target.value),"msek"); opdater(true); });
+$("#s_pause").addEventListener("input", e => { $("#o_pause").textContent = fmt(Number(e.target.value),"msek").replace("+",""); opdater(true); });
+$("#fil").addEventListener("change", e => { const f = e.target.files[0]; if(!f) return;
+  const r = new FileReader(); r.onload = () => { try { let d = JSON.parse(r.result); if(!Array.isArray(d)) d=[d];
+      K = d.map(x => (x.items && !x.layout) ? {skaerm: x.ue || "Passager", layout: x} : x);
+      bygFaner(); nulstil(); const forste = K.find(x=>x.layout); if(forste) vaelgSkaerm(forste.skaerm); logH("Indlæste "+f.name);
+    } catch(err){ logH("Kunne ikke læse filen: "+err.message); } };
+  r.readAsText(f); });
+window.addEventListener("resize", tilpas);
+let sidst = performance.now();
+function tik(nu){
+  const dt = (nu - sidst)/1000; sidst = nu;
+  if(!$("#pause").checked){ S.tid += dt; S.ur = (S.ur + dt*Number($("#tempo").value)) % 86400; }
+  if(scr){ anvend(); tegn(); }
+  if(nu - sidstLogTid > 500){ sidstLogTid = nu; if(scr){ visTags(); visVarsVaerdier(); } }
+  requestAnimationFrame(tik);
+}
+nulstil(); bygFaner();
+let start = "Driving"; try { start = localStorage.getItem("movia_preview_skaerm") || "Driving"; } catch(e){}
+vaelgSkaerm(K.some(e=>e.skaerm===start && e.layout) ? start : "Driving");
+requestAnimationFrame(tik);
+</script>
