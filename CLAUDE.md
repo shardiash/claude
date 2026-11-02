@@ -18,14 +18,13 @@ Svar altid på dansk. Brugeren tester i spillet; du bygger i Unreal-editoren via
 - `login_email.txt` (ikke i git) – login-mailen motoren tjekker. Uden filen bruges en eksempel-mail.
 
 ## Deploy i editoren (Windows: `C:\Users\tacci\Documents\The Bus\MoviaTools`)
+Ny motor (genereret `_motor_vNN.t3d`, nyeste nummer vælges automatisk):
 1. Commit ændrede filer til enheden.
-2. Python-konsollen: `exec(open(r"...\movia_byg_motor.py", encoding="utf-8").read())` (kun ved nye variabler).
-3. Åbn `/Game/MoviaSkaerme/WBP_MoviaMotor` → Graph → klik i grafen, Ctrl+A → højreklik node → Delete (tager 1-2 min).
-4. Konsol: `import sys; sys.path.append(r"...\MoviaTools"); import movia_klip; movia_klip.kopier_fil(r"...\_motor_vNN.t3d")` – vent ~30 s.
-5. Klik i grafen, Ctrl+V (1 min) → "Fix Self Context…" → Confirm.
-6. File → Refresh All Nodes → Compile ("Good to go") → gem med disketten (ikke Ctrl+S) → luk vinduet.
-7. Ved layout-/regelændringer: konsol `exec(open(r"...\movia_kommando.py", encoding="utf-8").read())`.
-8. TML → Mod Creator → Build Mod → Build Client Only (~6 min). Tjek pak-filens tid i `Mods\MoviaSkaerme\Paks`.
+2. Konsol: `exec(open(r"...\movia_ny_motor.py", encoding="utf-8").read())` – tilføjer variabler, sletter den gamle graf (remove_graph), kopierer motoren og åbner den.
+3. I motor-vinduet: Graph → `+` ved GRAPHS → Enter → klik i grafen → Ctrl+V (1 min) → Confirm → **File → Refresh All Nodes** (obligatorisk; uden den kompilerer motoren med fejl).
+4. Konsol: `movia_faerdig()` (eller `movia_faerdig(layout=True)` for også at køre kommando.json). Den kompilerer, tjekker loggen for fejl og at motoren ikke er tom, og gemmer kun hvis alt er ok.
+   - Kun funktionerne uden at starte forfra: `import builtins; builtins.MOVIA_KUN_DEF = True; exec(...)`.
+5. TML → Mod Creator → Build Mod → Build Client Only (~6 min). Tjek pak-filens tid i `Mods\MoviaSkaerme\Paks`.
 
 ## Status (31-10-2026)
 - Motor v43 bygget. Skift rute: trin 1 (Nær dig / Søg linje), trin 2 (startstop), pause-kort, Tjeneste-skærm.
